@@ -19,20 +19,17 @@ import java.sql.SQLException;
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public login() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public user get_person(String email,String password) {
-    	
-    	user p = null ;
-    	ResultSet rs = null ;
-    	ResultSet rts = null;
-    	
+	public user get_person(String email, String password) {
+
+		user p = null;
+		ResultSet rs = null;
+		ResultSet rts = null;
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// creating connection
@@ -49,42 +46,41 @@ public class login extends HttpServlet {
 //				System.out.println("get outside person : ");
 //				
 //			}
-			
+
 			rs = s.executeQuery();
-			
-			if(rs == null) {
-				
-				return null ;
-				
+
+			if (rs == null) {
+
+				return null;
+
 			}
-			
-			while(rs.next()){
-				
+
+			while (rs.next()) {
+
 				p = new user();
 				p.setEmail(rs.getString("email"));
 				p.setPass(rs.getString("password"));
-				
-				break ;
-				
+
+				break;
+
 			}
-			
-			
+
 		} catch (Exception e) {
-			
+
 			System.out.println(e);
-			
-		}finally { 
-			
+
+		} finally {
+
 			try {
-				rs.close();				
+				rs.close();
 			} catch (NullPointerException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return null ;
+				return null;
 			}
-			
+
 		}
-		
+
 		return p;
 
 	}
@@ -98,9 +94,9 @@ public class login extends HttpServlet {
 
 			s.setString(3, per.email);
 			s.setString(4, per.pass);
-				
+
 			int x = s.executeUpdate();
-				
+
 			if (x == 0) {
 				System.out.println("values not inserted");
 			} else {
@@ -111,36 +107,35 @@ public class login extends HttpServlet {
 		}
 
 	}
-	
-	
-	public boolean check_availability(String email,String password) {
-		
-		if(get_person(email,password).email == null) {
-			
-			return true ;
-			
-		}else {
-			
-			return false ;
-			
+
+	public boolean check_availability(String email, String password) {
+
+		if (get_person(email, password).email == null) {
+
+			return true;
+
+		} else {
+
+			return false;
+
 		}
-		
+
 	}
-	
+
 	private boolean validate(String email, String password) {
-		
+
 		user p = get_person(email, password);
 
-		if(p.email == null) {
-			
-			return false ;
-			
-		}else {
-			
-			return true ;
-			
-		}	
-		
+		if (p.email == null) {
+
+			return false;
+
+		} else {
+
+			return true;
+
+		}
+
 	}
 
 	/**
@@ -149,50 +144,51 @@ public class login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter() ;
-		
-		
+		PrintWriter out = response.getWriter();
+
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");	
+		String password = request.getParameter("password");
 		String form = request.getParameter("form");
-		
-		if(form.equals("login")) {
-			
-			if(validate(email, password)) {
-				
-//				redirect to portfolio
-				
-			}else {
-				
+
+		if (form.equals("sign_up")) {
+
+//			if (check_availability(email, password)) {
+
+//				user p = new user();
+//				p.email = email ;
+//				p.pass = password ;
+//				insert_person(p);
+			System.out.println("sign_up");
+			System.out.println("Name : "+request.getParameter("name")+" Email : " + email +" Password : " + password);
+
+// 				redirect to user admin panel
+
+//			} else {
 //				redirect back with warning
-				out.append("<h2 style=\"color: red ;\" >warning : wrong email id or password </h2>");
-				request.getRequestDispatcher("user.html").include(request, response) ;
-				
-			}
-			
-		}else if(form.equals("signin")) {
-			
-			if(check_availability(email, password)) {
-				
-				user p = new user();
-				p.email = email ;
-				p.pass = password ;
-				
-				insert_person(p);
-				
-				// redirect to portfolio
-				
-			}else {
+//				out.append("<center><h2 style=\"color: red ;\" >warning : user already exists</h2></center>");
+//				request.getRequestDispatcher("user.html").include(request, response);
+
+//			}
+
+		} else if (form.equals("signin")) {
+
+//			if (validate(email, password)) {
+
+//				redirect to user admin panel
+			System.out.println("sign in");
+			System.out.println("Email : " + email +" Password : " + password);
+
+//			} else {
+
 //				redirect back with warning
-				out.append("<h2 style=\"color: red ;\" >warning : user already exists</h2>");
-				request.getRequestDispatcher("user.html").include(request, response) ;
-				
-			}
-			
+//				out.append("<center><h2 style=\"color: red ;\" >warning : wrong email id or password </h2></center>");
+//				request.getRequestDispatcher("user.html").include(request, response);
+
+//			}
+
 		}
-		
 
 	}
 
