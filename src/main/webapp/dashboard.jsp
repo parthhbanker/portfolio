@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!-- HEADER -->
 <!doctype html>
 <html class="no-js" lang="">
@@ -51,16 +53,10 @@
       </aside>
       <div id="right-panel" class="right-panel">
          <header id="header" class="header">
-            <!-- <div class="top-left">
-               <div class="navbar-header">
-                  <a class="navbar-brand" href="plant.php">Name</a>
-                  <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-               </div>
-            </div> -->
             <div class="top-right">
                <div class="header-menu">
                   <div class="user-area dropdown float-right">
-                     Welcome Name
+                     Welcome <%= getServletContext().getAttribute("user") %>
                   </div>
                </div>
             </div>
