@@ -132,7 +132,7 @@ public class login extends HttpServlet {
 
 		user p = get_person(email, password);
 
-		if (p.email == null) {
+		if ( p == null || p.email == null) {
 
 			return false;
 
@@ -187,13 +187,13 @@ public class login extends HttpServlet {
 				sc.setAttribute("user", email);
 
 				// redirect to user admin panel
-				request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+				response.sendRedirect("admin/index.jsp");
 
 			} else {
 
 				// redirect back with warning
 				out.append("<center><h2 style=\"color: red ;\" >warning : user already exists</h2></center>");
-				request.getRequestDispatcher("login.html").include(request, response);
+				request.getRequestDispatcher("admin/login.jsp").include(request, response);
 
 			}
 
@@ -214,19 +214,19 @@ public class login extends HttpServlet {
 				// set attribute
 				sc.setAttribute("user", email);
 
-				request.getRequestDispatcher("dashboard.jsp").include(request, response);
+//				request.getRequestDispatcher("dashboard.jsp").include(request, response);
+				response.sendRedirect("admin/index.jsp");
 
 			} else {
 
 				// redirect back with warning
 				out.append("<center><h2 style=\"color: red ;\" >warning : wrong email id or password </h2></center>");
-				request.getRequestDispatcher("login.html").include(request, response);
+				request.getRequestDispatcher("admin/login.jsp").include(request, response);
 
 			}
-
 		}
-
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -234,8 +234,8 @@ public class login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 
 }

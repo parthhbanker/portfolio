@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
 
 /**
  * Servlet Filter implementation class login_filter
@@ -40,13 +42,14 @@ public class login_filter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-
-		System.out.println("calling filter");
 		
+		System.out.println("calling filter");
 		HttpServletRequest req = (HttpServletRequest) request;
 		ServletContext sc = req.getSession().getServletContext();
 		Cookie ck[] = req.getCookies();
 		boolean user_cookie_found = false ;
+		
+		response.getWriter().print("<script>alert('hello')</script>");
 		
 		if(ck != null ) {
 			
@@ -69,14 +72,14 @@ public class login_filter extends HttpFilter implements Filter {
 			if(!user_cookie_found) {
 				
 				System.out.println("redirect to login 1");
-				req.getRequestDispatcher("login.html").forward(req, response);
+				req.getRequestDispatcher("login.jsp").forward(req, response);
 				
 			}
 			
 		}else {
 			
 			System.out.println("redirect to login 2");
-			req.getRequestDispatcher("login.html").forward(req, response);
+			req.getRequestDispatcher("login.jsp").forward(req, response);
 			
 		}
 		

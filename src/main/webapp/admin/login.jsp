@@ -267,7 +267,7 @@ footer a {
 
       <!-- SIgn up -->
       <div class="form-container sign-up-container">
-         <form action="login" method="get">
+         <form action="../login" method="post">
          	<input type="hidden" name="form" value="sign_up" >
             <h1>Create Account</h1>
             <input type="text" placeholder="Name" name="name" required/>
@@ -280,7 +280,7 @@ footer a {
 
       <!-- Sign in -->
       <div class="form-container sign-in-container">
-         <form action="login" method="get">
+         <form action="../login" method="post">
          	<input type="hidden" name="form" value="signin" >
             <h1>Sign in</h1>
             <input type="email" placeholder="Email" name="email" required/>
