@@ -49,8 +49,6 @@ public class login_filter extends HttpFilter implements Filter {
 		Cookie ck[] = req.getCookies();
 		boolean user_cookie_found = false ;
 		
-		response.getWriter().print("<script>alert('hello')</script>");
-		
 		if(ck != null ) {
 			
 			for(int i = 0 ; i < ck.length ; i++) {
@@ -58,10 +56,13 @@ public class login_filter extends HttpFilter implements Filter {
 				if(ck[i].getName().equals("user")) {
 					
 					String user_email = ck[i].getValue();
-					sc.setAttribute("user", user_email);
-					System.out.println("setting attribute email : " + user_email);
+					
+					// passing the email to index.jsp so it can get the user info on its own
+					request.setAttribute("email", user_email);
+					
 					user_cookie_found = true ;
-					// pass the request along the filter chain
+					
+					// pass the request along the filter chain i.e index.jsp
 					System.out.println("end");
 					chain.doFilter(request, response);
 				

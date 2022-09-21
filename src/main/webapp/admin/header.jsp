@@ -21,9 +21,20 @@
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
    </head>
    
+   <%@ page import="servlet.user"%>
+   <%@ page import="servlet.data"%>
+   
    <%
    
    response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+   
+   user u = (user)getServletContext().getAttribute("user");
+   
+   // gettin the person from database
+   // user u = data.get_person(request.getAttribute("email").toString());
+   
+   // setting user in the servletcontext
+   // getServletContext().setAttribute("user", u);  
    
    /* if(application.getAttribute("user") == null){
 
@@ -74,7 +85,7 @@
             <div class="top-right">
                <div class="header-menu">
                   <div class="user-area dropdown float-right">
-                     Welcome <%= getServletContext().getAttribute("user") %>
+                     Welcome  <%= u.name  %>
                   </div>
                </div>
             </div>

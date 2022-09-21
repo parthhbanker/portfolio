@@ -18,100 +18,33 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.history.forward();
 	function noBack() {
 		window.history.forward();
 	}
-</script>
+</script> -->
 <body>
 
 
 	<%@ page import="java.sql.*"%>
-	<%@ page import="servlet.user "%>
-
-	<%!public user get_person(String email) {
-
-		user p = null;
-		ResultSet rs = null;
-		ResultSet rts = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// creating connection
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
-
-			// creating statement
-			PreparedStatement s = c.prepareStatement("SELECT * FROM user where email = ?");
-			s.setString(1, email);
-			rs = s.executeQuery();
-
-			rs = s.executeQuery();
-
-			if (rs == null) {
-
-				return null;
-
-			}
-
-			while (rs.next()) {
-
-				p = new user();
-				p.setEmail(rs.getString("email"));
-				p.setPass(rs.getString("pass"));
-
-				break;
-
-			}
-
-		} catch (Exception e) {
-
-			System.out.println(e);
-
-		} finally {
-
-			try {
-				rs.close();
-			} catch (NullPointerException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
-
-		}
-
-		return p;
-
-	}
-
-	private boolean validate(String email) {
-
-		user p = get_person(email);
-
-		if (p == null || p.email == null) {
-
-			return false;
-
-		} else {
-
-			return true;
-
-		}
-
-	}%>
+	<%@ page import="servlet.user"%>
+	<%@ page import="servlet.data"%>
 
 	<%
 
 	if (request.getParameter("email") != null) {
 
 		String email = request.getParameter("email");
-		get_person(email);
 
 		out.print(email);
 
-		boolean validation = validate(email);
+		boolean validation = data.validate(email);
 
 		if (validation) {
+			
+			user u = data.get_person(email); 
+			getServletContext().setAttribute("user", u);
 	%>
 
 	<!-- The Modal -->
@@ -128,7 +61,7 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<!-- make a simple html form to ask name and email -->
-				<form action="reset_password" method="post">
+				<form action="../reset_password" method="post">
 					<div class="form-group">
 						<label for="forgot">City:</label> <input type="text"
 							class="form-control" id="city"
@@ -140,9 +73,11 @@
 							placeholder="Enter your nickname" name="nickname">
 					</div>
 					<!-- enter dob -->
+					
+					<!-- <input type="date" name="begin" id="date" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31" -->
 					<div class="form-group">
 						<label for="dob">Date of Birth:</label> <input type="date"
-							class="form-control" id="dob"
+							class="form-control" id="dob" 
 							placeholder="Enter your date of birth" name="dob">
 					</div>
 					<!-- center submit button -->
@@ -158,10 +93,7 @@
 	<%
 	} else if (!validation) {
 		
-		getServletContext().setAttribute("user", email);
-		
 	%>
-
 
 	<!-- make a center div with 40% of screen size -->
 	<center>
@@ -173,7 +105,7 @@
 				<h3>Reset Password</h3>
 			</div>
 			<div class="card-body">
-				<form action="forgot_password.jsp" method="post">
+				<form action="admin/forgot_password.jsp" method="post">
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"
 							class="form-control" placeholder="Enter email" id="email"

@@ -3,6 +3,9 @@
     
 <jsp:include page="header.jsp" />  
 
+<%@ page import="servlet.user"%>
+<%user u = (user)getServletContext().getAttribute("user"); %>
+
 <div class="content pb-0">
    <div class="animated fadeIn">
       <div class="row">
@@ -19,7 +22,7 @@
 
                <div class="form-group">
 						<label for="users" class=" form-control-label">Email</label>
-						<input type="email" name="email" placeholder="Enter email" class="form-control" value="<%= getServletContext().getAttribute("email")%>" required>
+						<input type="email" name="email" placeholder="Enter email" class="form-control" value="<%= u.email %>" required>
 					</div>
 
 					<div class="form-group">
