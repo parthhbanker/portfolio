@@ -40,7 +40,7 @@
     <servlet-name>reset_password</servlet-name>
     <url-pattern>/reset_password</url-pattern>
   </servlet-mapping>
-  <filter>
+  <!-- <filter>
     <display-name>check_attribute</display-name>
     <filter-name>check_attribute</filter-name>
     <filter-class>filters.check_attribute</filter-class>
@@ -48,5 +48,5 @@
   <filter-mapping>
     <filter-name>check_attribute</filter-name>
     <url-pattern>/admin/users.jsp</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
 </web-app>

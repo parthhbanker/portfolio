@@ -1,17 +1,85 @@
-create database portfolio ;
+CREATE DATABASE IF NOT EXISTS portfolio ;
+USE portfolio ;
 
-use portfolio ;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS about;
+DROP TABLE IF EXISTS contact_info;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS security_questions;
 
-create table user (id int auto_increment , username varchar(255) not null, pass varchar(255) not null, email varchar(255) not null unique, primary key(id,email) );
+CREATE TABLE IF NOT EXISTS user (
+	id INT AUTO_INCREMENT , 
+    username VARCHAR(255) NOT NULL, 
+    pass varchar(255) NOT NULL, 
+    email varchar(255) NOT NULL UNIQUE, 
+    PRIMARY KEY(id) 
+);
 
-create table about ( id int primary key auto_increment, name_ varchar(255) , natonality varchar(255) , about_me text ,positoions text , user_id int ,foreign key (user_id) references user(id) );
+CREATE TABLE IF NOT EXISTS about (
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+    name_ VARCHAR(255),
+    nationality VARCHAR(255), 
+    about_me TEXT,
+    positions TEXT, 
+    projects INT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
 
-create table contact_info ( id int primary key auto_increment , address text , phone varchar(10) , email varchar(255) , user_id int , foreign key (user_id) references user(id) );
+INSERT INTO about VALUES (1, "Parth Banker", "INDIA", "I AM PARTH BANKER", "DEVELOPER",2, 1);
+
+CREATE TABLE IF NOT EXISTS contact_info (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    address TEXT,
+    phone VARCHAR(255),
+    email VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+INSERT INTO contact_info VALUES (1, "Some Address", "84697259997", "parthhbanker@gmail.com", 1);
  
-create table categories(id int auto_increment primary key , category_name varchar(255));
+CREATE TABLE IF NOT EXISTS categories(
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+	category_name VARCHAR(255)
+);
 
-create table skills (id int primary key auto_increment , skill text , user_id int , category int , foreign key (category) references categories(id) ,foreign key (user_id) references user(id) );
+INSERT INTO categories VALUES(1, 'DEV');
 
-create table messages (id int primary key auto_increment , name varchar(255) , email varchar(255) , query text , date_ timestamp , user_id int , foreign key (user_id) references user(id) );
+CREATE TABLE IF NOT EXISTS skills (
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+    skill TEXT,
+    user_id INT,
+    category INT,
+    FOREIGN KEY (category) REFERENCES categories(id) ,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
 
-create table security_questions(id int auto_increment primary key , city varchar(255) , nickname varchar(255) , DOB varchar(20) ,  user_id int ,foreign key (user_id) references user(id) );
+INSERT INTO skills VALUES (1, "Flutter", 1, 1);
+
+CREATE TABLE IF NOT EXISTS messages (
+	id int primary key auto_increment,
+    name_ VARCHAR(255),
+    email VARCHAR(255),
+    message TEXT,
+    date_ VARCHAR(20),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+INSERT INTO messages VALUES (1, "parth", "parthhbanker@gmail.com", "hey", "01/04/2022", 1);
+
+CREATE TABLE IF NOT EXISTS security_questions(
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+    city VARCHAR(255),
+    nickname VARCHAR(255),
+    DOB VARCHAR(20),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+select * from user;
+
+INSERT INTO security_questions VALUES(1, "AHM", "puzer", "2003-11-19", 1);

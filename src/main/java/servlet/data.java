@@ -95,6 +95,7 @@ public class data {
 				p.setEmail(rs.getString("email"));
 				p.setPass(rs.getString("pass"));
 				p.setName(rs.getString("username"));
+				p.setUser_id(rs.getInt("id"));
 
 				break;
 

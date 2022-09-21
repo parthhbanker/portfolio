@@ -80,6 +80,8 @@ public class login extends HttpServlet {
 				
 				// set attribute
 				sc.setAttribute("user", u);
+				System.out.println("User id is "+u.user_id);
+				sc.setAttribute("user_id", u.user_id);
 
 				// redirect to user admin panel
 				response.sendRedirect("admin/index.jsp");
@@ -110,6 +112,10 @@ public class login extends HttpServlet {
 				
 				// set attribute
 				sc.setAttribute("user", u);
+				System.out.println("User id is "+u.user_id);
+				sc.setAttribute("user_id", u.user_id);
+				sc.setAttribute("username",	 u.name);
+				System.out.println("username is ");
 
 //				request.getRequestDispatcher("dashboard.jsp").include(request, response);
 				response.sendRedirect("admin/index.jsp");

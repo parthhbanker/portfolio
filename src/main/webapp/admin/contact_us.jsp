@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
+
+<sql:setDataSource  var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/portfolio" user="root"  password="root"/>
+    
+    
 <jsp:include page="header.jsp" />  
 
 <div class="content pb-0">
@@ -19,23 +25,24 @@
 							   <th>ID</th>
 							   <th>Name</th>
 							   <th>Email</th>
-							   <th>Query</th>
+							   <th>Message</th>
 							   <th>Date</th>
 							   <th></th>
 							</tr>
 						 </thead>
 						 <tbody>
-							<?php 
-							$i=1;
-							while($row=mysqli_fetch_assoc($res)){?>
+						 <sql:query var="rs" dataSource="${db}">SELECT * from messages where user_id = ${user_id} ;	</sql:query>
+							   
+							   <c:forEach var="data" items="${rs.rows}"> 
 							<tr>
-							   <td><?php echo $row['id']?></td>
-							   <td><?php echo $row['name']?></td>
-							   <td><?php echo $row['email']?></td>
-							   <td><?php echo $row['comment']?></td>
-							   <td><?php echo $row['added_on']?></td>
+							   <td><c:out value="${data.id}"></c:out></td>
+							   <td><c:out value="${data.name_}"></c:out></td>
+							   <td><c:out value="${data.email}"></c:out></td>
+							   <td><c:out value="${data.message}"></c:out></td>
+							   <td><c:out value="${data.date_}"></c:out></td>
+							   <td></td>
 							</tr>
-							<?php } ?>
+							</c:forEach>  
 						 </tbody>
 					  </table>
 				   </div>

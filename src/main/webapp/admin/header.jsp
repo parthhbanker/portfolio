@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+ 
 <!-- HEADER -->
 <!doctype html>
 <html class="no-js" lang="">
-
    <head>
       <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
       <meta charset="utf-8">
@@ -20,29 +22,7 @@
       <link rel="stylesheet" href="assets/css/style.css">
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
    </head>
-   
-   <%@ page import="servlet.user"%>
-   <%@ page import="servlet.data"%>
-   
-   <%
-   
-   response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-   
-   user u = (user)getServletContext().getAttribute("user");
-   
-   // gettin the person from database
-   // user u = data.get_person(request.getAttribute("email").toString());
-   
-   // setting user in the servletcontext
-   // getServletContext().setAttribute("user", u);  
-   
-   /* if(application.getAttribute("user") == null){
-
-	   out.print("user not found");
-	   response.sendRedirect("dashboard.jsp");
-   }  */
-   
-   %>
+ 
 
    <body>
       <aside id="left-panel" class="left-panel">
@@ -85,7 +65,8 @@
             <div class="top-right">
                <div class="header-menu">
                   <div class="user-area dropdown float-right">
-                     Welcome  <%= u.name  %>
+                     	
+                     <c:out value="Welcome ${username}"></c:out>
                   </div>
                </div>
             </div>
