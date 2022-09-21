@@ -30,4 +30,14 @@
     <servlet-name>logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>reset_password</display-name>
+    <servlet-name>reset_password</servlet-name>
+    <servlet-class>servlet.reset_password</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>reset_password</servlet-name>
+    <url-pattern>/reset_password</url-pattern>
+  </servlet-mapping>
 </web-app>

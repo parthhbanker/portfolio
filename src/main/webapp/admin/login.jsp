@@ -285,7 +285,7 @@ footer a {
             <h1>Sign in</h1>
             <input type="email" placeholder="Email" name="email" required/>
             <input type="password" placeholder="Password" name="password" required/>
-            <a href="#">Forgot your password?</a>
+            <a href="forgot_password.jsp">Forgot your password?</a>
             <button>Sign In</button>
          </form>
       </div>

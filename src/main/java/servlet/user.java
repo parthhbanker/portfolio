@@ -2,7 +2,7 @@ package servlet;
 
 public class user {
 
-	String email , pass , name;
+	public String email , pass , name;
 	
 	
 	public String getEmail() {

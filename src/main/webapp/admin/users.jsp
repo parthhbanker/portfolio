@@ -19,7 +19,7 @@
 
                <div class="form-group">
 						<label for="users" class=" form-control-label">Email</label>
-						<input type="email" name="email" placeholder="Enter email" class="form-control" required>
+						<input type="email" name="email" placeholder="Enter email" class="form-control" value="<%= getServletContext().getAttribute("email")%>" required>
 					</div>
 
 					<div class="form-group">
