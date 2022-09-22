@@ -9,14 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href  ="assets/css/normalize.css">
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+      <link rel="stylesheet" href="assets/css/themify-icons.css">
+      <link rel="stylesheet" href="assets/css/pe-icon-7-filled.css">
+      <link rel="stylesheet" href="assets/css/flag-icon.min.css">
+      <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+      <link rel="stylesheet" href="assets/css/style.css">
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <!-- <script type="text/javascript">
 	window.history.forward();
@@ -105,7 +107,7 @@
 				<h3>Reset Password</h3>
 			</div>
 			<div class="card-body">
-				<form action="admin/forgot_password.jsp" method="post">
+				<form action="forgot_password.jsp" method="post">
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"
 							class="form-control" placeholder="Enter email" id="email"

@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS portfolio;
 CREATE DATABASE IF NOT EXISTS portfolio ;
 USE portfolio ;
 
@@ -17,6 +18,9 @@ CREATE TABLE IF NOT EXISTS user (
     PRIMARY KEY(id) 
 );
 
+INSERT INTO user VALUES 
+	(1, "Test User", "admin", "admin@gmail.com");
+    
 CREATE TABLE IF NOT EXISTS about (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
     name_ VARCHAR(255),
@@ -28,7 +32,9 @@ CREATE TABLE IF NOT EXISTS about (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO about VALUES (1, "Parth Banker", "INDIA", "I AM PARTH BANKER", "DEVELOPER",2, 1);
+select * from about;
+
+INSERT INTO about VALUES (1, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
 
 CREATE TABLE IF NOT EXISTS contact_info (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -39,14 +45,14 @@ CREATE TABLE IF NOT EXISTS contact_info (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO contact_info VALUES (1, "Some Address", "84697259997", "parthhbanker@gmail.com", 1);
+INSERT INTO contact_info VALUES (1, "Some Address", "1234567890", "admin@gmail.com", 1);
  
 CREATE TABLE IF NOT EXISTS categories(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
 	category_name VARCHAR(255)
 );
 
-INSERT INTO categories VALUES(1, 'DEV');
+INSERT INTO categories VALUES(1, 'JAVA');
 
 CREATE TABLE IF NOT EXISTS skills (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -57,7 +63,7 @@ CREATE TABLE IF NOT EXISTS skills (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO skills VALUES (1, "Flutter", 1, 1);
+INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 1);
 
 CREATE TABLE IF NOT EXISTS messages (
 	id int primary key auto_increment,
@@ -69,7 +75,10 @@ CREATE TABLE IF NOT EXISTS messages (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO messages VALUES (1, "parth", "parthhbanker@gmail.com", "hey", "01/04/2022", 1);
+INSERT INTO messages VALUES (1, "user1", "user1@gmail.com", "Hi i am user 1", "01/04/2022", 1);
+INSERT INTO messages VALUES (2, "user2", "user2@gmail.com", "Hi i am user 2", "01/09/2022", 1);
+INSERT INTO messages VALUES (3, "user3", "user3@gmail.com", "Hi i am user 3", "04/05/2022", 1);
+INSERT INTO messages VALUES (4, "user4", "user4@gmail.com", "Hi i am user 4", "01/01/2022", 1);
 
 CREATE TABLE IF NOT EXISTS security_questions(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -80,6 +89,4 @@ CREATE TABLE IF NOT EXISTS security_questions(
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-select * from user;
-
-INSERT INTO security_questions VALUES(1, "AHM", "puzer", "2003-11-19", 1);
+INSERT INTO security_questions VALUES(1, "IND", "admin", "1999-01-01", 1);

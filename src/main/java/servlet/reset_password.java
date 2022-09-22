@@ -54,10 +54,14 @@ public class reset_password extends HttpServlet {
 		
 		System.out.println("DOB is "+DOB);
 		
-		if(data.validate(email, city, nickname, DOB)) {
+		user p = data.get_person(email, city , nickname , DOB);
+		
+		if(data.validate(p)) {
 			
 			System.out.println("validated");
-			request.getRequestDispatcher("admin/users.jsp").forward(request, response);
+			request.getServletContext().setAttribute("user_id", p.user_id);
+//			request.getRequestDispatcher("admin/users.jsp").forward(request, response);
+			response.sendRedirect("admin/users.jsp");
 			
 		}else {
 			

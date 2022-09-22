@@ -6,15 +6,28 @@
 
 <sql:setDataSource  var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/portfolio" user="root"  password="root"/>
     
-<jsp:include page="header.jsp" />  
+<c:if test="${pageContext.request.method=='POST'}">
+	<sql:update dataSource="${db}" var="count">  
+		UPDATE user SET 
+			username = "<%= request.getParameter("username") %>", 
+			pass= "<%= request.getParameter("password") %>", 
+			email= "<%= request.getParameter("email") %>"
+		where id = ${user_id}
+	</sql:update> 
+</c:if>
 
+
+<jsp:include page="header.jsp" />  
 <div class="content pb-0">
    <div class="animated fadeIn">
       <div class="row">
          <div class="col-lg-12">
             <div class="card">
-               <div class="card-header"><strong>User</strong><small> Form</small><h4 class="box-link"><a href="">Edit</a> </h4></div>
-               <form method="post" enctype="multipart/form-data">
+               <div class="card-header"><strong>User</strong><small> Form</small><h4 class="box-link"><label class="switch">
+  <input id="edit" type="checkbox" onclick="formSetting()">
+  <span class="slider round"></span>
+</label> </h4></div>
+               <form method="post" id="editForm" action="users.jsp">
                <sql:query var="rs" dataSource="${db}">SELECT * from user where id =${user_id} ;	</sql:query>
 							   
 				<c:forEach var="data" items="${rs.rows}"> 
@@ -22,17 +35,17 @@
 				   <div class="form-group">
 					<div class="form-group">
 						<label for="users" class=" form-control-label">User Name</label>
-						<input type="text" name="username" placeholder="Enter user name" class="form-control" value='<c:out value="${data.username}"></c:out>' required>
+						<input type="text" name="username" placeholder="Enter user name" class="form-control" value='<c:out value="${data.username}"></c:out>' required disabled>
 					</div>
 
                <div class="form-group">
 						<label for="users" class=" form-control-label">Email</label>
-						<input type="email" name="email" placeholder="Enter email" class="form-control" value='<c:out value="${data.email}"></c:out>'  required>
+						<input type="email" name="email" placeholder="Enter email" class="form-control" value='<c:out value="${data.email}"></c:out>'  required disabled>
 					</div>
 
 					<div class="form-group">
 						<label for="users" class=" form-control-label">Password</label>
-						<input type="password" name="password" placeholder="Enter password" class="form-control" value=	'<c:out value="${data.pass}"></c:out>'  required>
+						<input type="password" name="password" placeholder="Enter password" class="form-control" value=	'<c:out value="${data.pass}"></c:out>'  required disabled>
 					</div>
 					
 				   <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-info btn-block" disabled>
@@ -46,21 +59,5 @@
    </div>
 </div>
 
-<div class="clearfix"></div>
-         <footer class="site-footer">
-            <div class="footer-inner bg-white">
-               <div class="row">
-                  <div class="col-sm-6">
-                     Copyright &copy; Text
-                  </div>
-                  
-               </div>
-            </div>
-         </footer>
-      </div>
-      <script src="assets/js/vendor/jquery-2.1.4.min.js" type="text/javascript"></script>
-      <script src="assets/js/popper.min.js" type="text/javascript"></script>
-      <script src="assets/js/plugins.js" type="text/javascript"></script>
-      <script src="assets/js/main.js" type="text/javascript"></script>
-   </body>
-</html>
+
+<jsp:include page="footer.jsp" />  

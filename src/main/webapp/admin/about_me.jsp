@@ -8,7 +8,17 @@
     
 <jsp:include page="header.jsp" />  
 
-<%! String data="disabled"; %>  
+<c:if test="${pageContext.request.method=='POST'}">
+	<sql:update dataSource="${db}" var="count">  
+		UPDATE about SET 
+			name_ = "<%= request.getParameter("name") %>", 
+			nationality= "<%= request.getParameter("nationality") %>", 
+			about_me= "<%= request.getParameter("about_me") %>",
+			positions= "<%= request.getParameter("positions") %>",
+			projects= <%= request.getParameter("projects") %>
+		where user_id = ${user_id}
+	</sql:update> 
+</c:if>
 
 <div class="content pb-0">
             <div class="animated fadeIn">
@@ -16,44 +26,42 @@
                   <div class="col-lg-12">
                      <div class="card">
                         <div class="card-header"><strong>About Me</strong><small> Form</small>
-                           <% 
-                           
-                           	out.print("<h4 class='box-link'><button name='edit' type='submit' class='btn btn-lg  btn-info' onclick=hey()");
-                           %>
-							   <span id="payment-button-amount">Edit</span>
-							   </button> </h4></div>
+                           <h4 class="box-link"><label class="switch">
+  <input id="edit" type="checkbox" onclick="formSetting()">
+  <span class="slider round"></span>
+</label> </h4></div>
 							   <sql:query var="rs" dataSource="${db}">SELECT * from about where user_id = ${user_id};	</sql:query>
 							   <c:forEach var="data" items="${rs.rows}"> 
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" id="editForm" action="about_me.jsp">
 							<div class="card-body card-block">
 							   <div class="form-group">
 							   
 								<div class="form-group">
 									<label for="about" class=" form-control-label">Name</label>
-									<input type="text" name="name" value='<c:out value="${data.name_}"></c:out>' class="form-control" required>
+									<input type="text" name="name" id="name" value='<c:out value="${data.name_}"></c:out>' class="form-control" required disabled>
 								</div>
 
                         <div class="form-group">
 									<label for="about" class=" form-control-label">Nationality</label>
-									<input type="text" name="nationality"  class="form-control" value='<c:out value="${data.nationality}"></c:out>' required>
+									<input type="text" name="nationality"  class="form-control" value='<c:out value="${data.nationality}"></c:out>' required disabled>
 								</div>
 								
 								<div class="form-group">
 									<label for="about" class=" form-control-label">About Me</label>
-									<textarea name="about_me" class="form-control" required><c:out value="${data.about_me}"></c:out></textarea>
+									<textarea name="about_me" class="form-control" required disabled><c:out value="${data.about_me}"></c:out></textarea>
 								</div>
 
                         <div class="form-group">
 									<label for="about" class=" form-control-label">My Positions</label>
-									<textarea name="positions" class="form-control" required><c:out value="${data.positions}"></c:out></textarea>
+									<textarea name="positions" class="form-control" required disabled><c:out value="${data.positions}"></c:out></textarea>
 								</div>
 
                         <div class="form-group">
 									<label for="about" class=" form-control-label">Projects</label>
-									<input type="number" name="projects" value=	'<c:out value="${data.projects}"></c:out>' class="form-control" required>
+									<input type="number" name="projects" value=	'<c:out value="${data.projects}"></c:out>' class="form-control" required disabled>
 								</div>
 								
-							   <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-info btn-block" <%= data	 %>>
+							   <button id="payment-button" name="submit" type="submit"  class="btn btn-lg btn-info btn-block" disabled>
 							   <span id="payment-button-amount">Submit</span>
 							   </button>
 							   </c:forEach>  
@@ -64,22 +72,11 @@
             </div>
          </div>
          
+         <script>
+         	function printD(){
+         		alert(document.getElementById("name").value);
+         	}
+         </script>
+         
 <!-- FOOTER -->
-<div class="clearfix"></div>
-         <footer class="site-footer">
-            <div class="footer-inner bg-white">
-               <div class="row">
-                  <div class="col-sm-6">
-                     Copyright &copy; Text
-                  </div>
-                  
-               </div>
-            </div>
-         </footer>
-      </div>
-      <script src="assets/js/vendor/jquery-2.1.4.min.js" type="text/javascript"></script>
-      <script src="assets/js/popper.min.js" type="text/javascript"></script>
-      <script src="assets/js/plugins.js" type="text/javascript"></script>
-      <script src="assets/js/main.js" type="text/javascript"></script>
-   </body>
-</html>
+<jsp:include page="footer.jsp" />  

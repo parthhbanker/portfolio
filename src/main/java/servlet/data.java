@@ -133,7 +133,7 @@ public class data {
 
 			// creating statement
 			PreparedStatement s = c.prepareStatement(
-					"select email from security_questions sq , user s where s.email = ? and city = ? and nickname = ? and DOB = ? and s.id = sq.user_id ;");
+					"select s.id, s.email from security_questions sq , user s where s.email = ? and city = ? and nickname = ? and DOB = ? and s.id = sq.user_id ;");
 			s.setString(1, email);
 			s.setString(2, city);
 			s.setString(3, nickname);
@@ -146,7 +146,9 @@ public class data {
 			while (rs.next()) {
 
 				p = new user();
-				p.setEmail(rs.getString("email"));
+				p.setUser_id(rs.getInt("s.id"));
+				p.setEmail(rs.getString("s.email"));
+				
 
 				break;
 
@@ -240,11 +242,11 @@ public class data {
 		}
 	}
 
-	public static boolean validate(String email, String city, String nickname , String DOB) {
+	public static boolean validate(user p) {
 
-		user p = data.get_person(email, city , nickname , DOB);
+//		user p = data.get_person(email, city , nickname , DOB);
 
-		if ( p == null || p.email == null) {
+		if ( p == null) {
 
 			return false;
 

@@ -16,5 +16,24 @@
       <script src="assets/js/popper.min.js" type="text/javascript"></script>
       <script src="assets/js/plugins.js" type="text/javascript"></script>
       <script src="assets/js/main.js" type="text/javascript"></script>
+      <script>
+		function formSetting() {
+			  // Get the checkbox
+			  var checkBox = document.getElementById("edit");
+			  if (checkBox.checked == true){
+				  var form = document.getElementById("editForm");
+				  var elements = form.elements;
+				  for (var i = 0, len = elements.length; i < len; ++i) {
+				      elements[i].disabled = false;
+				  }
+			  } else {
+				  var form = document.getElementById("editForm");
+				  var elements = form.elements;
+				  for (var i = 0, len = elements.length; i < len; ++i) {
+				      elements[i].disabled = true;
+				  }
+			  }
+			}
+		</script>
    </body>
 </html>

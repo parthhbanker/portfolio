@@ -19,6 +19,10 @@
   <filter-mapping>
     <filter-name>login_filter</filter-name>
     <url-pattern>/admin/index.jsp</url-pattern>
+    <url-pattern>/admin/user.jsp</url-pattern>
+    <url-pattern>/admin/about_me.jsp</url-pattern>
+    <url-pattern>/admin/contact_us.jsp</url-pattern>
+    <url-pattern>/admin/contact_info.jsp</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -40,13 +44,4 @@
     <servlet-name>reset_password</servlet-name>
     <url-pattern>/reset_password</url-pattern>
   </servlet-mapping>
-  <!-- <filter>
-    <display-name>check_attribute</display-name>
-    <filter-name>check_attribute</filter-name>
-    <filter-class>filters.check_attribute</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>check_attribute</filter-name>
-    <url-pattern>/admin/users.jsp</url-pattern>
-  </filter-mapping> -->
 </web-app>
