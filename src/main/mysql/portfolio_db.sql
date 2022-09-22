@@ -49,22 +49,27 @@ INSERT INTO contact_info VALUES (1, "Some Address", "1234567890", "admin@gmail.c
  
 CREATE TABLE IF NOT EXISTS categories(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
-	category_name VARCHAR(255)
+	category_name VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO categories VALUES(1, 'JAVA');
+INSERT INTO categories VALUES(1, 'Language Siklls',1);
 
 CREATE TABLE IF NOT EXISTS skills (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
     skill TEXT,
     user_id INT,
     category INT,
+    level int ,
     FOREIGN KEY (category) REFERENCES categories(id) ,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 1);
+INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 2,75);
 
+select * from categories ;
+SELECT s.* , c.category_name from skills s , categories c where s.user_id = 1 and s.user_id = c.user_id and s.category = c.id ;
 CREATE TABLE IF NOT EXISTS messages (
 	id int primary key auto_increment,
     name_ VARCHAR(255),

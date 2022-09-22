@@ -121,6 +121,63 @@ public class data {
 
 	}
 
+	public static user get_person(int id) {
+
+		user p = null;
+		ResultSet rs = null;
+		ResultSet rts = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// creating connection
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
+
+			// creating statement
+			PreparedStatement s = c.prepareStatement("SELECT * FROM user where id = ?");
+			s.setInt(1, id);
+
+			rs = s.executeQuery();
+
+			rs = s.executeQuery();
+
+			if (rs == null) {
+
+				return null;
+
+			}
+
+			while (rs.next()) {
+
+				p = new user();
+				p.setEmail(rs.getString("email"));
+				p.setPass(rs.getString("pass"));
+				p.setName(rs.getString("username"));
+				p.setUser_id(rs.getInt("id"));
+
+				break;
+
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e);
+
+		} finally {
+
+			try {
+				rs.close();
+			} catch (NullPointerException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+
+		}
+
+		return p;
+
+	}
+	
 	public static user get_person(String email, String city, String nickname, String DOB) {
 
 		user p = null;
