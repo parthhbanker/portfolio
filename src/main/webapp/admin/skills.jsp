@@ -6,9 +6,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<!--  -->
 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
 	url="jdbc:mysql://localhost:3306/portfolio" user="root" password="root" />
+
+<c:if test="${not empty param.id}">
+
+	<sql:update dataSource="${db}" var="count">  
+		DELETE FROM skills wher id = "${param.id}" ; 
+	</sql:update>
+	
+	<%
+	response.sendRedirect("skills.jsp");
+	%>
+
+</c:if>
 
 <div class="content pb-0">
 	<div class="orders">
@@ -33,24 +44,23 @@
 									</tr>
 								</thead>
 								<tbody>
-								<% int i = 1; %>
+									<%
+									int i = 1;
+									%>
 
 									<sql:query var="rs" dataSource="${db}">SELECT s.* , c.category_name from skills s , categories c where s.user_id = ${user_id} and s.user_id = c.user_id and s.category = c.id ;</sql:query>
 
 									<c:forEach var="data" items="${rs.rows}">
-						
+
 										<tr>
-											<td><%= i++ %></td>
+											<td><%=i++%></td>
 											<td><c:out value="${data.skill}"></c:out></td>
 											<td><c:out value="${data.category_name}"></c:out></td>
-											<td>&nbsp;<span
-												class='badge badge-edit'><a
-													href='manage_plant.php?id=1'>Edit</a></span>&nbsp;<span
+											<td>&nbsp;<span class='badge badge-edit'><a
+													href='add_skill.jsp?id=${data.id}'>Edit</a></span>&nbsp;<span
 												class='badge badge-delete'><a
-													href='?type=delete&id=1'>Delete</a></span></td>
+													href='skills.jsp?id=${data.id}'>Delete</a></span></td>
 										</tr>
-
-
 										<tr>
 									</c:forEach>
 								</tbody>

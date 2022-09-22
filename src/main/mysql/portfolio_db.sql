@@ -54,7 +54,8 @@ CREATE TABLE IF NOT EXISTS categories(
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO categories VALUES(1, 'Language Siklls',1);
+INSERT INTO categories VALUES(1, 'Language skills',1);
+INSERT INTO categories VALUES(2, 'Work skills',1);
 
 CREATE TABLE IF NOT EXISTS skills (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -66,10 +67,10 @@ CREATE TABLE IF NOT EXISTS skills (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
+delete from skills where  ;
+
 INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 2,75);
 
-select * from categories ;
-SELECT s.* , c.category_name from skills s , categories c where s.user_id = 1 and s.user_id = c.user_id and s.category = c.id ;
 CREATE TABLE IF NOT EXISTS messages (
 	id int primary key auto_increment,
     name_ VARCHAR(255),

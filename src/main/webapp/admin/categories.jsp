@@ -10,12 +10,27 @@
 	url="jdbc:mysql://localhost:3306/portfolio" user="root" password="root" />
 
 <c:if test="${pageContext.request.method=='POST'}">
+
 	<sql:update dataSource="${db}" var="count">  
 		INSERT INTO categories(category_name ,user_id ) VALUES( "<%=request.getParameter("title")%>" , ${user_id});
 	</sql:update>
 	<%
 	response.sendRedirect("categories.jsp");
 	%>
+	
+</c:if>
+
+
+<c:if test="${not empty param.id}">
+
+	<sql:update dataSource="${db}" var="count">  
+		DELETE FROM categories where id = ${param.id} ;
+	</sql:update>
+	
+	<%
+	response.sendRedirect("categories.jsp");
+	%>
+
 </c:if>
 
 <form method="post" action="categories.jsp" id="editForm">
@@ -62,9 +77,9 @@
 										<tr>
 											<td><c:out value="${data.category_name}"></c:out></td>
 											<td>&nbsp;<span class='badge badge-edit'><a
-													href='manage_plant.php?id=1'>Edit</a></span>&nbsp;<span
+													href='edit_category.jsp?id=${data.id}'>Edit</a></span>&nbsp;<span
 												class='badge badge-delete'><a
-													href='?type=delete&id=1'>Delete</a></span></td>
+													href='categories.jsp?id=${data.id}'>Delete</a></span></td>
 										</tr>
 
 
