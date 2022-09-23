@@ -10,15 +10,25 @@
 <jsp:include page="header.jsp" />
 
 <c:if test="${pageContext.request.method=='POST'}">
+
 	<sql:update dataSource="${db}" var="count">  
 		UPDATE about SET 
-			name_ = "<%=request.getParameter("name")%>", 
-			nationality= "<%=request.getParameter("nationality")%>", 
-			about_me= "<%=request.getParameter("about_me")%>",
-			positions= "<%=request.getParameter("positions")%>",
-			projects= <%=request.getParameter("projects")%>
+			name_ = "${param.name}", 
+			nationality= "${param.nationality}", 
+			about_me= "${param.about_me}",
+			positions= "${param.positions}",
+			projects= ${param.projects}
 		where user_id = ${user_id}
 	</sql:update>
+	
+	<c:if test="${count eq \"0\" or count eq \"null\"}">
+
+		<sql:update dataSource="${db}" var="count">  
+			INSERT INTO about(name_ , nationality, about_me, positions , projects , user_id) VALUES ("${param.name}", "${param.nationality}", "${param.about_me}", "${param.positions}" , ${param.projects} ,${user_id} );
+		</sql:update>
+
+	</c:if>
+
 </c:if>
 
 <div class="content pb-0">
@@ -34,44 +44,43 @@
 							</label>
 						</h4>
 					</div>
+
 					<sql:query var="rs" dataSource="${db}">SELECT * from about where user_id = ${user_id};	</sql:query>
 
 					<form method="post" id="editForm" action="about_me.jsp">
 						<div class="card-body card-block">
 							<div class="form-group">
-
 								<div class="form-group">
 									<label for="about" class=" form-control-label">Name</label> <input
-										type="text" name="name" id="name"
-										value='<c:out value="${rs.rows[0].name_}"></c:out>'
+										type="text" name="name" id="name" value="${rs.rows[0].name_}"
 										class="form-control" required disabled>
 								</div>
 
 								<div class="form-group">
 									<label for="about" class=" form-control-label">Nationality</label>
 									<input type="text" name="nationality" class="form-control"
-										value='<c:out value="${rs.rows[0].nationality}"></c:out>'
-										required disabled>
+										value="${rs.rows[0].nationality}" required disabled>
 								</div>
 
 								<div class="form-group">
 									<label for="about" class=" form-control-label">About Me</label>
 									<textarea name="about_me" class="form-control" required
-										disabled><c:out value="${rs.rows[0].about_me}"></c:out></textarea>
+										disabled>${rs.rows[0].about_me}</textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="about" class=" form-control-label">My
 										Positions</label>
 									<textarea name="positions" class="form-control" required
-										disabled><c:out value="${rs.rows[0].positions}"></c:out></textarea>
+										disabled>${rs.rows[0].positions}</textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="about" class=" form-control-label">Projects</label>
 									<input type="number" name="projects"
-										value='<c:out value="${rs.rows[0].projects}"></c:out>'
-										class="form-control" required disabled>
+										value="${rs.rows[0].projects}" class="form-control" required
+										disabled min="0" value="0">
+
 								</div>
 
 								<button id="payment-button" name="submit" type="submit"
