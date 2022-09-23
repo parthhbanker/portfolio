@@ -90,9 +90,7 @@ public class login extends HttpServlet {
 
 			} else {
 
-				// redirect back with warning
-				out.append("<center><h2 style=\"color: red ;\" >warning : user already exists</h2></center>");
-				request.getRequestDispatcher("admin/login.jsp").include(request, response);
+				response.sendRedirect("admin/login.jsp?warning=1");
 
 			}
 
@@ -126,8 +124,7 @@ public class login extends HttpServlet {
 			} else {
 
 				// redirect back with warning
-				out.append("<center><h2 style=\"color: red ;\" >warning : wrong email id or password </h2></center>");
-				request.getRequestDispatcher("admin/login.jsp").include(request, response);
+				response.sendRedirect("admin/login.jsp?warning=2");
 
 			}
 		}

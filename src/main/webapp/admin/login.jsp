@@ -263,6 +263,24 @@ footer a {
    </style>
 </head>
 <body>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:choose>
+
+	<c:when test="${param.warning == 1}">
+	
+		<center><h2 style="color: red ;" >warning : user already exists</h2></center>
+	
+	</c:when>
+	<c:when test="${param.warning == 2}">
+	
+		<center><h2 style="color: red ;" >warning : wrong email id or password </h2></center>
+	
+	</c:when>
+
+</c:choose>
+
    <div class="container" id="container">
 
       <!-- SIgn up -->
