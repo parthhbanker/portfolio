@@ -39,7 +39,7 @@
 		
 			<div class="form-group">
 				<label for="contact" class=" form-control-label">Title</label> <input
-					type="text" name="title" class="form-control" placeholder="title">
+					type="text" name="title" class="form-control" placeholder="title" required >
 			</div>
 
 			<button id="add_category" name="submit" type="submit">

@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS contact_info (
 
 INSERT INTO contact_info VALUES (1, "Some Address", "1234567890", "admin@gmail.com", 1);
 
-select * from contact_info;
+-- select * from contact_info;
 
 CREATE TABLE IF NOT EXISTS categories(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
