@@ -11,6 +11,8 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import servlet.data;
+import servlet.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,12 +55,21 @@ public class login_filter extends HttpFilter implements Filter {
 			
 			for(int i = 0 ; i < ck.length ; i++) {
 				
-				if(ck[i].getName().equals("user")) {
+				if(ck[i].getName().equals("user_id")) {
 					
-					String user_email = ck[i].getValue();
+					String user_id = ck[i].getValue();
 					
-					// passing the email to index.jsp so it can get the user info on its own
-					request.setAttribute("email", user_email);
+					// set attribute
+					
+					System.out.println(user_id);
+					
+					user u = data.get_person(Integer.parseInt(user_id));
+					
+					sc.setAttribute("user", u);
+					System.out.println("User id is "+u.user_id);
+					sc.setAttribute("user_id", u.user_id);
+					sc.setAttribute("username",	 u.name);
+					System.out.println("username is ");
 					
 					user_cookie_found = true ;
 					
