@@ -111,8 +111,10 @@ input:checked+.slider:before {
 					<li class="menu-item-has-children dropdown"><a
 						href="categories.jsp"> Categories</a></li>
 
-					<li class="menu-item-has-children dropdown"><a href="#">
-							Create Portfolio</a></li>
+					<li class="menu-item-has-children dropdown">
+                  
+                     <a href="../Portfolio_2/index.jsp?userId=<c:out value='${user_id}'></c:out>" target="_blank"> Create Portfolio</a>
+                  </li>
 
 					<li><a href="../logout"> <i
 							class="menu-icon fa fa-sign-out"></i>Logout

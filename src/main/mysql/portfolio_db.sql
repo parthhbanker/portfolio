@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS about (
 
 select * from about;
 
-INSERT INTO about VALUES (1, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
+INSERT INTO about VALUES (2, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
 
 CREATE TABLE IF NOT EXISTS contact_info (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -66,7 +66,8 @@ CREATE TABLE IF NOT EXISTS skills (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 2,75);
+truncate table skills;
+INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 1,25);
 
 select * from categories ;
 SELECT s.* , c.category_name from skills s , categories c where s.user_id = 1 and s.user_id = c.user_id and s.category = c.id ;
@@ -84,6 +85,8 @@ INSERT INTO messages VALUES (1, "user1", "user1@gmail.com", "Hi i am user 1", "0
 INSERT INTO messages VALUES (2, "user2", "user2@gmail.com", "Hi i am user 2", "01/09/2022", 1);
 INSERT INTO messages VALUES (3, "user3", "user3@gmail.com", "Hi i am user 3", "04/05/2022", 1);
 INSERT INTO messages VALUES (4, "user4", "user4@gmail.com", "Hi i am user 4", "01/01/2022", 1);
+
+select * from messages;
 
 CREATE TABLE IF NOT EXISTS security_questions(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
