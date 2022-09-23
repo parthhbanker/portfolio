@@ -23,6 +23,9 @@
     <url-pattern>/admin/about_me.jsp</url-pattern>
     <url-pattern>/admin/contact_us.jsp</url-pattern>
     <url-pattern>/admin/contact_info.jsp</url-pattern>
+    <url-pattern>/admin/add_skill.jsp</url-pattern>
+    <url-pattern>/admin/skills.jsp</url-pattern>
+    <url-pattern>/admin/categories.jsp</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
