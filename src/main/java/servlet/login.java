@@ -1,4 +1,4 @@
-package servlet;
+ package servlet;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -70,18 +70,20 @@ public class login extends HttpServlet {
 				System.out.println("sign_up");
 				System.out.println("Name : " + name + " Email : " + email + " Password : " + password);
 
+				user u = data.get_person(email);
+				
 				// set cookie
-				cookie = new Cookie("user", email);
+				cookie = new Cookie("user_id", "" + u.user_id);
 				// 604800 secs = week of time
 				cookie.setMaxAge(604800);
 				response.addCookie(cookie);
-				
-				user u = data.get_person(email);
 				
 				// set attribute
 				sc.setAttribute("user", u);
 				System.out.println("User id is "+u.user_id);
 				sc.setAttribute("user_id", u.user_id);
+				sc.setAttribute("username",	 u.name);
+				System.out.println("username is ");
 
 				// redirect to user admin panel
 				response.sendRedirect("admin/index.jsp");
@@ -102,13 +104,14 @@ public class login extends HttpServlet {
 				System.out.println("sign in");
 				System.out.println("Email : " + email + " Password : " + password);
 
+				user u = data.get_person(email);
+				
 				// set cookie
-				cookie = new Cookie("user", email);
+				cookie = new Cookie("user_id", ""+u.user_id);
 				// 604800 secs = week of time
 				cookie.setMaxAge(604800);
 				response.addCookie(cookie);
 
-				user u = data.get_person(email);
 				
 				// set attribute
 				sc.setAttribute("user", u);
