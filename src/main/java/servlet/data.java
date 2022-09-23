@@ -7,7 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class data {
-
+    
+	public static Connection connect() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection c=DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio","root","root");
+		return c;
+	}
 	public static user get_person(String email, String password) {
 
 		user p = null;
@@ -15,11 +20,8 @@ public class data {
 		ResultSet rts = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// creating connection
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
-
 			// creating statement
+			Connection c=connect();
 			PreparedStatement s = c.prepareStatement("SELECT * FROM user where email = ? AND pass = ?");
 			s.setString(1, email);
 			s.setString(2, password);
@@ -71,10 +73,8 @@ public class data {
 		ResultSet rts = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// creating connection
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
 
+			Connection c=connect();
 			// creating statement
 			PreparedStatement s = c.prepareStatement("SELECT * FROM user where email = ?");
 			s.setString(1, email);
@@ -128,10 +128,7 @@ public class data {
 		ResultSet rts = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// creating connection
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
-
+			Connection c=connect();
 			// creating statement
 			PreparedStatement s = c.prepareStatement("SELECT * FROM user where id = ?");
 			s.setInt(1, id);
@@ -184,10 +181,7 @@ public class data {
 		ResultSet rs = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// creating connection
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
-
+			Connection c=connect();
 			// creating statement
 			PreparedStatement s = c.prepareStatement(
 					"select s.id, s.email from security_questions sq , user s where s.email = ? and city = ? and nickname = ? and DOB = ? and s.id = sq.user_id ;");
@@ -234,9 +228,7 @@ public class data {
 	public static void insert_person(user per, boolean sign_up) {
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
-
+			Connection c=connect();
 			PreparedStatement s;
 
 			if (sign_up) {
