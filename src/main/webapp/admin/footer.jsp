@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <div class="clearfix"></div>
-         <footer class="site-footer">
-            <div class="footer-inner bg-white">
-               <div class="row">
-                  <div class="col-sm-6">
+         <footer class="site-footer position-relative overflow-hidden container-fluid p-0" style="margin-top:100%">
+            <div class="footer-inner bg-white m-0">
+               <div class="row d-flex justify-content-center align-items-center">
+                  <div class="col-sm-6 text-center">
                      Copyright &copy; Text
                   </div>
                   

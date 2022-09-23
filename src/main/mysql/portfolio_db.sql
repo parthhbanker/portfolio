@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS about (
 
 select * from about;
 
-INSERT INTO about VALUES (1, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
+INSERT INTO about VALUES (2, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
 
 CREATE TABLE IF NOT EXISTS contact_info (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -67,9 +67,14 @@ CREATE TABLE IF NOT EXISTS skills (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
+<<<<<<< HEAD
+truncate table skills;
+INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 1,25);
+=======
 delete from skills where  ;
 
 INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 2,75);
+>>>>>>> branch 'master' of https://github.com/Puzer-03/portfolio.git
 
 CREATE TABLE IF NOT EXISTS messages (
 	id int primary key auto_increment,
@@ -85,6 +90,8 @@ INSERT INTO messages VALUES (1, "user1", "user1@gmail.com", "Hi i am user 1", "0
 INSERT INTO messages VALUES (2, "user2", "user2@gmail.com", "Hi i am user 2", "01/09/2022", 1);
 INSERT INTO messages VALUES (3, "user3", "user3@gmail.com", "Hi i am user 3", "04/05/2022", 1);
 INSERT INTO messages VALUES (4, "user4", "user4@gmail.com", "Hi i am user 4", "01/01/2022", 1);
+
+select * from messages;
 
 CREATE TABLE IF NOT EXISTS security_questions(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
