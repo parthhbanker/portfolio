@@ -40,7 +40,7 @@
 
 		<div class="input-group mb-3">
 			<input type="text" name="title" class="d-lg-inline-block m-90"
-					placeholder="title">
+					placeholder="title" required>
 			<div class="input-group-append">
 				<button id="add_category"
 						name="submit" type="submit">

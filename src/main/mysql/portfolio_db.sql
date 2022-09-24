@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS user (
 
 INSERT INTO user VALUES 
 	(1, "Test User", "admin", "admin@gmail.com");
+INSERT INTO user VALUES 
+	(2, "Het Parekh", "admin", "hetparekh21@gmail.com");
     
 CREATE TABLE IF NOT EXISTS about (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -32,9 +34,12 @@ CREATE TABLE IF NOT EXISTS about (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-select * from about;
+-- select * from user ;
+-- use portfolio ;
 
-INSERT INTO about VALUES (2, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
+INSERT INTO about VALUES (1, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
+-- INSERT INTO about VALUES (2, "Het Parekh", "INDIA", "I AM Het Parekh", "DEVELOPER",3, 2);
+
 
 CREATE TABLE IF NOT EXISTS contact_info (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -46,7 +51,9 @@ CREATE TABLE IF NOT EXISTS contact_info (
 );
 
 INSERT INTO contact_info VALUES (1, "Some Address", "1234567890", "admin@gmail.com", 1);
- 
+
+-- select * from contact_info;
+
 CREATE TABLE IF NOT EXISTS categories(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
 	category_name VARCHAR(255),
@@ -56,6 +63,10 @@ CREATE TABLE IF NOT EXISTS categories(
 
 INSERT INTO categories VALUES(1, 'Language skills',1);
 INSERT INTO categories VALUES(2, 'Work skills',1);
+
+-- SELECT * from about where user_id = 2 ;
+
+-- SELECT c.category_name  from categories c where id = 1 ;
 
 CREATE TABLE IF NOT EXISTS skills (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -83,8 +94,6 @@ INSERT INTO messages VALUES (1, "user1", "user1@gmail.com", "Hi i am user 1", "0
 INSERT INTO messages VALUES (2, "user2", "user2@gmail.com", "Hi i am user 2", "01/09/2022", 1);
 INSERT INTO messages VALUES (3, "user3", "user3@gmail.com", "Hi i am user 3", "04/05/2022", 1);
 INSERT INTO messages VALUES (4, "user4", "user4@gmail.com", "Hi i am user 4", "01/01/2022", 1);
-
-select * from messages;
 
 CREATE TABLE IF NOT EXISTS security_questions(
 	id INT PRIMARY KEY AUTO_INCREMENT, 

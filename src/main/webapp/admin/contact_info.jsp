@@ -9,13 +9,23 @@
 <jsp:include page="header.jsp" />
 
 <c:if test="${pageContext.request.method=='POST'}">
+
 	<sql:update dataSource="${db}" var="count">  
 		UPDATE contact_info SET 
-			address = "<%=request.getParameter("address")%>", 
-			phone= "<%=request.getParameter("phone")%>", 
-			email= "<%=request.getParameter("email")%>"
+			address = "${param.address}", 
+			phone= "${param.phone}", 
+			email= "${param.email}"
 		where user_id = ${user_id}
 	</sql:update>
+
+	<c:if test="${count eq \"0\" or count eq \"null\"}">
+
+		<sql:update dataSource="${db}" var="count">  
+			INSERT INTO contact_info(address , phone, email, user_id) VALUES ("${param.address}", "${param.phone}", "${param.email}", ${user_id} );
+		</sql:update>
+
+	</c:if>
+
 </c:if>
 
 <div class="content pb-0">
@@ -35,7 +45,7 @@
 						<div class="card-body card-block">
 							<div class="form-group">
 
-								<sql:query var="rs" dataSource="${db}">SELECT * from contact_info where user_id =${user_id} ;	</sql:query>
+								<sql:query var="rs" dataSource="${db}">SELECT * from contact_info where user_id = ${user_id} ;	</sql:query>
 
 								<div class="form-group">
 									<label for="contact" class=" form-control-label">Address</label>
