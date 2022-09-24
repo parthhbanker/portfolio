@@ -6,15 +6,12 @@ import java.io.*;
 import java.sql.*;
 import servlet.data;
 
-/**
- * Servlet implementation class login
- */
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public login() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	
@@ -37,10 +34,6 @@ public class login extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -98,7 +91,7 @@ public class login extends HttpServlet {
 
 			if (data.validate(email, password)) {
 
-				// edirect to user admin panel
+				// redirect to user admin panel
 				System.out.println("sign in");
 				System.out.println("Email : " + email + " Password : " + password);
 
@@ -130,11 +123,6 @@ public class login extends HttpServlet {
 		}
 	}
 	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="style.css" type="text/css">
-   <title>Login</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css" type="text/css">
+<title>Login</title>
 
-   <style>
-      
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+<style>
+@import
+	url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
 	box-sizing: border-box;
@@ -102,8 +102,8 @@ input {
 .container {
 	background-color: #fff;
 	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
+		rgba(0, 0, 0, 0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;
@@ -142,18 +142,26 @@ input {
 	animation: show 0.6s;
 }
 
-@keyframes show {
-	0%, 49.99% {
-		opacity: 0;
-		z-index: 1;
-	}
-	
-	50%, 100% {
-		opacity: 1;
-		z-index: 5;
-	}
+@
+keyframes show { 0%, 49.99% {
+	opacity: 0;
+	z-index: 1;
 }
 
+50
+%
+,
+100
+%
+{
+opacity
+:
+1;
+z-index
+:
+5;
+}
+}
 .overlay-container {
 	position: absolute;
 	top: 0;
@@ -165,7 +173,7 @@ input {
 	z-index: 100;
 }
 
-.container.right-panel-active .overlay-container{
+.container.right-panel-active .overlay-container {
 	transform: translateX(-100%);
 }
 
@@ -181,12 +189,12 @@ input {
 	left: -100%;
 	height: 100%;
 	width: 200%;
-  	transform: translateX(0);
+	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
 }
 
 .container.right-panel-active .overlay {
-  	transform: translateX(50%);
+	transform: translateX(50%);
 }
 
 .overlay-panel {
@@ -237,93 +245,98 @@ input {
 }
 
 footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
+	background-color: #222;
+	color: #fff;
+	font-size: 14px;
+	bottom: 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 999;
 }
 
 footer p {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 
 footer i {
-    color: red;
+	color: red;
 }
 
 footer a {
-    color: #3c97bf;
-    text-decoration: none;
+	color: #3c97bf;
+	text-decoration: none;
 }
-   </style>
+</style>
 </head>
 <body>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:choose>
+	<c:choose>
 
-	<c:when test="${param.warning == 1}">
-	
-		<center><h2 style="color: red ;" >warning : user already exists</h2></center>
-	
-	</c:when>
-	<c:when test="${param.warning == 2}">
-	
-		<center><h2 style="color: red ;" >warning : wrong email id or password </h2></center>
-	
-	</c:when>
+		<c:when test="${param.warning == 1}">
 
-</c:choose>
+			<center>
+				<h2 style="color: red;">warning : user already exists</h2>
+			</center>
 
-   <div class="container" id="container">
+		</c:when>
+		<c:when test="${param.warning == 2}">
 
-      <!-- SIgn up -->
-      <div class="form-container sign-up-container">
-         <form action="../login" method="post">
-         	<input type="hidden" name="form" value="sign_up" >
-            <h1>Create Account</h1>
-            <input type="text" placeholder="Name" name="name" required/>
-            <input type="email" placeholder="Email" name="email" required/>
-            <input type="password" placeholder="Password" name="password" required/>
-            <button>Sign Up</button>
-         </form>
-      </div>
+			<center>
+				<h2 style="color: red;">warning : wrong email id or password</h2>
+			</center>
+
+		</c:when>
+
+	</c:choose>
+
+	<div class="container" id="container">
+
+		<!-- SIgn up -->
+		<div class="form-container sign-up-container">
+			<form action="../login" method="post">
+				<input type="hidden" name="form" value="sign_up">
+				<h1>Create Account</h1>
+				<input type="text" placeholder="Name" name="name" required /> <input
+					type="email" placeholder="Email" name="email" required /> <input
+					type="password" placeholder="Password" name="password" required />
+				<button>Sign Up</button>
+			</form>
+		</div>
 
 
-      <!-- Sign in -->
-      <div class="form-container sign-in-container">
-         <form action="../login" method="post">
-         	<input type="hidden" name="form" value="signin" >
-            <h1>Sign in</h1>
-            <input type="email" placeholder="Email" name="email" required/>
-            <input type="password" placeholder="Password" name="password" required/>
-            <a href="forgot_password.jsp">Forgot your password?</a>
-            <button>Sign In</button>
-         </form>
-      </div>
+		<!-- Sign in -->
+		<div class="form-container sign-in-container">
+			<form action="../login" method="post">
+				<input type="hidden" name="form" value="signin">
+				<h1>Sign in</h1>
+				<input type="email" placeholder="Email" name="email" required /> <input
+					type="password" placeholder="Password" name="password" required />
+				<a href="forgot_password.jsp">Forgot your password?</a>
+				<button>Sign In</button>
+			</form>
+		</div>
 
-      <!-- overlay -->
-      <div class="overlay-container">
-         <div class="overlay">
-            <div class="overlay-panel overlay-left">
-               <h1>Welcome Back!</h1>
-               <p>To keep connected with us please login with your personal info</p>
-               <button class="ghost" id="signIn">Sign In</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-               <h1>Hello, Friend!</h1>
-               <p>Enter your personal details and start journey with us</p>
-               <button class="ghost" id="signUp">Sign Up</button>
-            </div>
-         </div>
-      </div>
-   </div>   
+		<!-- overlay -->
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal
+						info</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 <script>
