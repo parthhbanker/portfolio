@@ -27,10 +27,10 @@
 			<div class="col-xl-12">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="box-title">Skills</h4>
-						<h4 class="box-link">
-							<a href="add_skill.jsp">Add Skill</a>
-						</h4>
+						<strong>About Me</strong>
+						<span class="" style="float:right;">
+							<a href="add_skill.jsp" class="btn text-decoration-none bg-secondary text-white" role="button">Add Skill</a>
+						</span>
 					</div>
 					<div class="card-body--">
 						<div class="table-stats order-table ov-h">
@@ -47,6 +47,7 @@
 									<%
 									int i = 1;
 									%>
+									
 
 									<sql:query var="rs" dataSource="${db}">SELECT s.* , c.category_name from skills s , categories c where s.user_id = ${user_id} and s.user_id = c.user_id and s.category = c.id ;</sql:query>
 
@@ -73,20 +74,4 @@
 	</div>
 </div>
 
-<div class="clearfix"></div>
-<footer class="site-footer">
-	<div class="footer-inner bg-white">
-		<div class="row">
-			<div class="col-sm-6">Copyright &copy;</div>
-
-		</div>
-	</div>
-</footer>
-</div>
-<script src="assets/js/vendor/jquery-2.1.4.min.js"
-	type="text/javascript"></script>
-<script src="assets/js/popper.min.js" type="text/javascript"></script>
-<script src="assets/js/plugins.js" type="text/javascript"></script>
-<script src="assets/js/main.js" type="text/javascript"></script>
-</body>
-</html>
+<jsp:include page="footer.jsp" />  

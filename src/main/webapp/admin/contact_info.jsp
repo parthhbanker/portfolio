@@ -24,12 +24,12 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<strong>Contact Information</strong><small> Form</small>
-						<h4 class="box-link">
+						<strong>Contact Information</strong>
+						<span class="box-link" style="float:right;">
 							<label class="switch"> <input id="edit" type="checkbox"
 								onclick="formSetting()"> <span class="slider round"></span>
 							</label>
-						</h4>
+						</span>
 					</div>
 					<form method="post" action="contact_info.jsp" id="editForm">
 						<div class="card-body card-block">

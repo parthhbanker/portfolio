@@ -67,14 +67,7 @@ CREATE TABLE IF NOT EXISTS skills (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-<<<<<<< HEAD
-truncate table skills;
-INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 1,25);
-=======
-delete from skills where  ;
-
 INSERT INTO skills VALUES (1, "JSP SERVLET", 1, 2,75);
->>>>>>> branch 'master' of https://github.com/Puzer-03/portfolio.git
 
 CREATE TABLE IF NOT EXISTS messages (
 	id int primary key auto_increment,

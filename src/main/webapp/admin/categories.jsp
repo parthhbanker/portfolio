@@ -17,7 +17,7 @@
 	<%
 	response.sendRedirect("categories.jsp");
 	%>
-	
+
 </c:if>
 
 
@@ -26,7 +26,7 @@
 	<sql:update dataSource="${db}" var="count">  
 		DELETE FROM categories where id = ${param.id} ;
 	</sql:update>
-	
+
 	<%
 	response.sendRedirect("categories.jsp");
 	%>
@@ -35,17 +35,18 @@
 
 <form method="post" action="categories.jsp" id="editForm">
 	<div class="card-body card-block">
-		<div class="form-group">
-		
-			<div class="form-group">
-				<label for="contact" class=" form-control-label">Title</label> <input
-					type="text" name="title" class="form-control" placeholder="title">
-			</div>
 
-			<button id="add_category" name="submit" type="submit">
-				<span>Add Category</span>
-			</button>
-			
+			<label for="contact" class=" form-control-label">Add Category</label>
+
+		<div class="input-group mb-3">
+			<input type="text" name="title" class="d-lg-inline-block m-90"
+					placeholder="title">
+			<div class="input-group-append">
+				<button id="add_category"
+						name="submit" type="submit">
+						<span>Add Category</span>
+					</button>
+			</div>
 		</div>
 	</div>
 </form>
@@ -95,20 +96,4 @@
 	</div>
 </div>
 
-<div class="clearfix"></div>
-<footer class="site-footer">
-	<div class="footer-inner bg-white">
-		<div class="row">
-			<div class="col-sm-6">Copyright &copy;</div>
-
-		</div>
-	</div>
-</footer>
-</div>
-<script src="assets/js/vendor/jquery-2.1.4.min.js"
-	type="text/javascript"></script>
-<script src="assets/js/popper.min.js" type="text/javascript"></script>
-<script src="assets/js/plugins.js" type="text/javascript"></script>
-<script src="assets/js/main.js" type="text/javascript"></script>
-</body>
-</html>
+<jsp:include page="footer.jsp" />

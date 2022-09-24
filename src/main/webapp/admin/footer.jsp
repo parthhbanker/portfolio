@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<div class="clearfix"></div>
+<!-- <div class="clearfix"></div>
          <footer class="site-footer position-relative overflow-hidden container-fluid p-0" style="margin-top:100%">
             <div class="footer-inner bg-white m-0">
                <div class="row d-flex justify-content-center align-items-center">
@@ -11,7 +11,7 @@
                </div>
             </div>
          </footer>
-      </div>
+      </div> -->
       <script src="assets/js/vendor/jquery-2.1.4.min.js" type="text/javascript"></script>
       <script src="assets/js/popper.min.js" type="text/javascript"></script>
       <script src="assets/js/plugins.js" type="text/javascript"></script>

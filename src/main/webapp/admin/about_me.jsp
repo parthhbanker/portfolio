@@ -27,12 +27,13 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<strong>About Me</strong><small> Form</small>
-						<h4 class="box-link">
+						<strong>About Me</strong>
+						
+						<span class="box-link" style="float:right;">
 							<label class="switch"> <input id="edit" type="checkbox"
 								onclick="formSetting()"> <span class="slider round"></span>
 							</label>
-						</h4>
+						</span>
 					</div>
 					<sql:query var="rs" dataSource="${db}">SELECT * from about where user_id = ${user_id};	</sql:query>
 
