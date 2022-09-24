@@ -110,13 +110,13 @@
 								<div class="form-group">
 									<label for="contact" class=" form-control-label">Title</label>
 									<input type="text" name="title" class="form-control"
-										value="${skill_name}">
+										value="${skill_name}" required >
 								</div>
 
 								<div class="form-group">
 									<label for="contact" class=" form-control-label">Level</label>
 									<input type="number" name="level" class="form-control" min="0"
-										max="100" value="${level}">
+										max="100" value="${level}" required>
 								</div>
 
 								<c:choose>
