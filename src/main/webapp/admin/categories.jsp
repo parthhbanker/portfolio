@@ -34,20 +34,30 @@
 </c:if>
 
 <form method="post" action="categories.jsp" id="editForm">
+
+	
+
+
 	<div class="card-body card-block">
 
-			<label for="contact" class=" form-control-label">Add Category</label>
-
+		
+		<div class="container mt-3">
+		<label for="contact" class=" form-control-label">Add Category</label>
 		<div class="input-group mb-3">
-			<input type="text" name="title" class="d-lg-inline-block m-90"
-					placeholder="title" required>
+			<input type="text" name="title" class="form-control"
+				placeholder="Add Category" required>
+
 			<div class="input-group-append">
-				<button id="add_category"
-						name="submit" type="submit">
-						<span>Add Category</span>
-					</button>
+				<button id="add_category" name="submit" type="submit"
+					class="btn bg-secondary text-white">
+					<span>Add Category</span>
+				</button>
 			</div>
 		</div>
+
+
+	</div>
+
 	</div>
 </form>
 
