@@ -4,6 +4,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
+<%@ page import="java.util.Base64"%>
+	<%
+	String a = request.getParameter("userId").toString();
+	byte[] decodedBytes = Base64.getDecoder().decode(a);
+	String decodedString = new String(decodedBytes);
+	application.setAttribute("UserId", decodedString);
+	%>
+
 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
 	url="jdbc:mysql://localhost:3306/portfolio" user="root" password="root" />
 
@@ -38,10 +46,6 @@
 
 </head>
 
-<%
-	application.setAttribute("user_id", request.getParameter("userId"));
-%>
-
 <body>
 
 	<div class="fh5co-loader"></div>
@@ -57,7 +61,7 @@
 						<div class="display-t js-fullheight">
 								<div class="display-tc js-fullheight animate-box"
 									data-animate-effect="fadeIn">
-							<sql:query var="rs" dataSource="${db}">SELECT * from about where user_id =${user_id} ;	</sql:query>
+							<sql:query var="rs" dataSource="${db}">SELECT * from about where user_id =${UserId} ;	</sql:query>
 							<c:forEach var="data" items="${rs.rows}">
 									<div class="profile-thumb"
 										style="background: url(images/user-3.jpg);"></div>
@@ -84,7 +88,7 @@
 			</div>
 		</header>
 		
-		<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${user_id} ;	</sql:query>
+		<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${UserId} ;	</sql:query>
 
 	<c:forEach var="data" items="${rs.rows}">
 
@@ -188,7 +192,7 @@
 			</div>
 		</div>
 		
-		<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${user_id} ;	</sql:query>
+		<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${UserId} ;	</sql:query>
 		<%! int i=1, j=1; %>
 		<c:forEach var="data" items="${rs.rows}">
 					<% i+=1; %>
@@ -201,7 +205,7 @@
 						<h2>Skills</h2>
 					</div>
 				</div>
-				<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${user_id} ;	</sql:query>
+				<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${UserId} ;	</sql:query>
 				<div class="row row-pb-md">
 	<c:forEach var="data" items="${rs.rows}">
 					<div class="col-md-3 col-sm-6 col-xs-12 text-center">

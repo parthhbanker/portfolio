@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS user (
 
 INSERT INTO user VALUES 
 	(1, "Test User", "admin", "admin@gmail.com");
-INSERT INTO user VALUES 
-	(2, "Het Parekh", "admin", "hetparekh21@gmail.com");
+/*INSERT INTO user VALUES 
+	(2, "Het Parekh", "admin", "hetparekh21@gmail.com");*/
     
 CREATE TABLE IF NOT EXISTS about (
 	id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -117,3 +117,24 @@ CREATE TABLE IF NOT EXISTS security_questions(
 );
 
 INSERT INTO security_questions VALUES(1, "IND", "admin", "1999-01-01", 1);
+
+
+
+-- Dummy data for user table 
+INSERT INTO user(username, pass, email) VALUES 
+	("Test User1", "admin", "admin1@gmail.com"),
+    ("Test User2", "admin", "admin2@gmail.com"),
+    ("Test User3", "admin", "admin3@gmail.com"),
+    ("Test User4", "admin", "admin4@gmail.com");
+    
+INSERT INTO about(name_, nationality, about_me, positions, projects, user_id) VALUES 
+	("Test User1", "USA", "I AM Test User2", "UI/UX",3, 2),
+    ("Test User2", "CANADA", "I AM Test User3", "System Admin",0, 3),
+    ("Test User3", "UAE", "I AM Test User4", "HR",4, 4),
+    ("Test User4", "UK", "I AM Test User5", "CEO",7, 5);
+    
+INSERT INTO contact_info(address, phone, email, user_id) VALUES 
+	("Some Address1", "1234567890", "admin1@gmail.com", 2),
+    ("Some Address2", "9999999999", "admin2@gmail.com", 3),
+    ("Some Address3", "0987654321", "admin3@gmail.com", 4),
+    ("Some Address4", "1212121212", "admin4@gmail.com", 5);
