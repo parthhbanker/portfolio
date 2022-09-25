@@ -1,5 +1,8 @@
 package servlet;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +10,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class data {
+	
+	public static String getMd5(String input)
+    {
+        try {
+ 
+          
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(input.getBytes());
+ 
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            String hashtext = no.toString(16);
+            
+            return hashtext;
+        }
+ 
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
     
 	public static Connection connect() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -24,7 +48,7 @@ public class data {
 			Connection c=connect();
 			PreparedStatement s = c.prepareStatement("SELECT * FROM user where email = ? AND pass = ?");
 			s.setString(1, email);
-			s.setString(2, password);
+			s.setString(2, getMd5(password));
 			rs = s.executeQuery();
 
 			rs = s.executeQuery();
@@ -236,14 +260,14 @@ public class data {
 				s = c.prepareStatement("insert into user(email , pass , username) values(?,?,?)");
 
 				s.setString(1, per.email);
-				s.setString(2, per.pass);
+				s.setString(2, getMd5(per.pass));
 				s.setString(3, per.name);
 
 			} else {
 
 				s = c.prepareStatement("insert into user(email , pass) values(?,?)");
 				s.setString(1, per.email);
-				s.setString(2, per.pass);
+				s.setString(2, getMd5(per.pass));
 
 			}
 
