@@ -288,7 +288,7 @@ footer a {
          <form action="../login" method="post">
          	<input type="hidden" name="form" value="sign_up" >
             <h1>Create Account</h1>
-            <input type="text" placeholder="Name" name="name" required/>
+            <input type="text" placeholder="User Name" name="name" required/>
             <input type="email" placeholder="Email" name="email" required/>
             <input type="password" placeholder="Password" name="password" required/>
             <button>Sign Up</button>

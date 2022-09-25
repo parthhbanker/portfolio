@@ -65,9 +65,9 @@
 				<!-- make a simple html form to ask name and email -->
 				<form action="../reset_password" method="post">
 					<div class="form-group">
-						<label for="forgot">City:</label> <input type="text"
-							class="form-control" id="city"
-							placeholder="Enter city you were born" name="city">
+						<label for="forgot">Hobby:</label> <input type="text"
+							class="form-control" id="hobby"
+							placeholder="Enter your hobby" name="hobby">
 					</div>
 					<div class="form-group">
 						<label for="nickname">Nickname:</label> <input type="nickname"

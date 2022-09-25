@@ -41,6 +41,7 @@ public class reset_password extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		
 		ServletContext s = getServletContext();
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
@@ -48,13 +49,13 @@ public class reset_password extends HttpServlet {
 		user u = (user)s.getAttribute("user");
 		
 		String email = u.email;
-		String city = request.getParameter("city");
+		String hobby = request.getParameter("hobby");
 		String nickname = request.getParameter("nickname");
 		String DOB = request.getParameter("dob");
 		
-		System.out.println("DOB is "+DOB);
+		System.out.println("Details are "+DOB+" "+email+" "+nickname+" "+hobby);
 		
-		user p = data.get_person(email, city , nickname , DOB);
+		user p = data.get_person(email, hobby , nickname , DOB);
 		
 		if(data.validate(p)) {
 			

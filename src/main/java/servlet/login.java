@@ -86,7 +86,8 @@ public class login extends HttpServlet {
 				System.out.println("username is ");
 
 				// redirect to user admin panel
-				response.sendRedirect("admin/index.jsp");
+				System.out.println("Redirecting to security page");
+				response.sendRedirect("admin/security_question.jsp");
 
 			} else {
 

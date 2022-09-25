@@ -199,18 +199,20 @@ public class data {
 
 	}
 	
-	public static user get_person(String email, String city, String nickname, String DOB) {
+	public static user get_person(String email, String hobby, String nickname, String DOB) {
 
 		user p = null;
 		ResultSet rs = null;
+		
+		
 
 		try {
 			Connection c=connect();
 			// creating statement
 			PreparedStatement s = c.prepareStatement(
-					"select s.id, s.email from security_questions sq , user s where s.email = ? and city = ? and nickname = ? and DOB = ? and s.id = sq.user_id ;");
+					"select s.id, s.email from security_questions sq , user s where s.email = ? and hobby = ? and nickname = ? and DOB = ? and s.id = sq.user_id ;");
 			s.setString(1, email);
-			s.setString(2, city);
+			s.setString(2, hobby);
 			s.setString(3, nickname);
 			s.setString(4, DOB);
 
@@ -223,6 +225,8 @@ public class data {
 				p = new user();
 				p.setUser_id(rs.getInt("s.id"));
 				p.setEmail(rs.getString("s.email"));
+				
+				System.out.println("id is "+p.user_id+"email is "+p.email);
 				
 
 				break;

@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%> 
+<%@ page import="servlet.data"  %>
 
 <sql:setDataSource  var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/portfolio" user="root"  password="root"/>
     
@@ -10,7 +11,7 @@
 	<sql:update dataSource="${db}" var="count">  
 		UPDATE user SET 
 			username = "<%= request.getParameter("username") %>", 
-			pass= "<%= request.getParameter("password") %>", 
+			pass= "<%= data.getMd5(request.getParameter("password")) %>", 
 			email= "<%= request.getParameter("email") %>"
 		where id = ${user_id}
 	</sql:update> 
@@ -18,7 +19,7 @@
 
 
 <jsp:include page="header.jsp" />  
-<div class="content pb-0">
+<div class="content pb-0">s
    <div class="animated fadeIn">
       <div class="row">
          <div class="col-lg-12">
@@ -52,7 +53,10 @@
 				   <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-info btn-block" disabled>
 				   <span id="payment-button-amount">Submit</span>
 				   </button>
+				   </div>
+				   </div>
 				   </c:forEach>  
+				   
 			</form>
             </div>
          </div>
