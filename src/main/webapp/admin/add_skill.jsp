@@ -69,7 +69,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<strong> ${page_name} </strong><small> Form</small>
+						<strong> ${page_name} </strong> 
 					</div>
 					<form method="post" action="add_skill.jsp" id="editForm">
 						<input type="hidden" name="execute" value="${submit_button}">

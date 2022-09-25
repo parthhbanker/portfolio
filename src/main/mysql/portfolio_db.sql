@@ -5,6 +5,7 @@ USE portfolio ;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS about;
 DROP TABLE IF EXISTS contact_info;
+DROP TABLE IF EXISTS education;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS messages;
@@ -35,7 +36,6 @@ CREATE TABLE IF NOT EXISTS about (
 );
 
 -- select * from user ;
--- use portfolio ;
 
 -- INSERT INTO about VALUES (1, "Test User", "INDIA", "I AM Test User", "DEVELOPER",2, 1);
 -- INSERT INTO about VALUES (2, "Het Parekh", "INDIA", "I AM Het Parekh", "DEVELOPER",3, 2);
@@ -53,6 +53,19 @@ CREATE TABLE IF NOT EXISTS contact_info (
 -- INSERT INTO contact_info VALUES (1, "Some Address", "1234567890", "admin@gmail.com", 1);
 
 -- select * from contact_info;
+
+CREATE TABLE IF NOT EXISTS education (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    school TEXT,
+    degree TEXT,
+    start_date TEXT,
+    end_date TEXT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);	
+ 
+insert into education(school,college,degree,start_date,end_date,user_id,study) values("mehta","gu","bsc","2022-09-04","2022-12-02",1,1);
+-- select * from education;		
 
 CREATE TABLE IF NOT EXISTS categories(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
