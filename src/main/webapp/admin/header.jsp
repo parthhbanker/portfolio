@@ -20,6 +20,8 @@
 <link rel="stylesheet" href="assets/css/flag-icon.min.css">
 <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- font awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
 	rel='stylesheet' type='text/css'>
@@ -86,6 +88,13 @@ input:checked+.slider:before {
 </style>
 </head>
 
+<%@ page import="java.util.Base64" %>
+<%
+	String a = application.getAttribute("user_id").toString();
+	String encodedString = Base64.getEncoder().encodeToString(a.getBytes());
+%>
+
+
 
 <body>
 	<aside id="left-panel" class="left-panel">
@@ -93,6 +102,8 @@ input:checked+.slider:before {
 			<div id="main-menu" class="main-menu collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="menu-title">Menu</li>
+
+
 
 					<li class="menu-item-has-children dropdown"><a
 						href="about_me.jsp"> About Me</a></li>
@@ -113,7 +124,8 @@ input:checked+.slider:before {
 
 					<li class="menu-item-has-children dropdown">
                   
-                     <a href="../Portfolio_2/index.jsp?userId=<c:out value='${user_id}'></c:out>" target="_blank"> Create Portfolio</a>
+                     <a href="../Portfolio_2/index.jsp?userId=<%= encodedString %>" target="_blank"> Create Portfolio
+                     </a>
                   </li>
 
 					<li><a href="../logout"> <i

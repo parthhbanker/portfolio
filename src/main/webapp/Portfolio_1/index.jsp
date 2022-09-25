@@ -3,6 +3,13 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page import="java.util.Base64"%>
+	<%
+	String a = request.getParameter("userId").toString();
+	byte[] decodedBytes = Base64.getDecoder().decode(a);
+	String decodedString = new String(decodedBytes);
+	application.setAttribute("UserId", decodedString);
+	%>
 
 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
 	url="jdbc:mysql://localhost:3306/portfolio" user="root" password="root" />
@@ -44,14 +51,13 @@
 
 <body>
 
-<%
-	application.setAttribute("user_id", request.getParameter("userId"));
-%>
+	
+
 
 	<!-- ======= Mobile nav toggle button ======= -->
 	<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-	<sql:query var="rs" dataSource="${db}">SELECT * from about where user_id =${user_id} ;	</sql:query>
+	<sql:query var="rs" dataSource="${db}">SELECT * from about where user_id =${UserId} ;	</sql:query>
 
 	<c:forEach var="data" items="${rs.rows}">
 
@@ -113,64 +119,66 @@
 	</c:forEach>
 
 	<main id="main">
-	
-	<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${user_id} ;	</sql:query>
 
-	<c:forEach var="data" items="${rs.rows}">
-	
+		<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${UserId} ;	</sql:query>
 
-		<!-- ======= About Section ======= -->
-		<section id="about" class="about">
-			<div class="container">
+		<c:forEach var="data" items="${rs.rows}">
 
-				<div class="section-title">
-					<h2>About</h2>
-					<!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius
+
+			<!-- ======= About Section ======= -->
+			<section id="about" class="about">
+				<div class="container">
+
+					<div class="section-title">
+						<h2>About</h2>
+						<!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius
 						consequatur ex aliquid fuga eum quidem. Sit sint consectetur
 						velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit
 						suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem
 						hic quas.</p> -->
-				</div>
-
-				<div class="row">
-					<div class="col-lg-4" data-aos="fade-right">
-						<img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
 					</div>
-					<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-						<h3>UI/UX Designer &amp; Web Developer.</h3>
-						<!-- <p class="fst-italic">
+
+					<div class="row">
+						<div class="col-lg-4" data-aos="fade-right">
+							<img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+						</div>
+						<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+							<h3>UI/UX Designer &amp; Web Developer.</h3>
+							<!-- <p class="fst-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
             </p> -->
-						<div class="row">
-							<div class="col-lg-6">
-								<ul>
-									<li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-										<span>www.example.com</span></li>
-									<li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
-										<span><c:out value="${data.phone}"></c:out></span></li>
-								</ul>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul>
+										<li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
+											<span>www.example.com</span></li>
+										<li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
+											<span><c:out value="${data.phone}"></c:out></span></li>
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul>
+										<li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+											<span><c:out value="${data.email}"></c:out></span></li>
+										<li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
+											<span>Available</span></li>
+									</ul>
+								</div>
 							</div>
-							<div class="col-lg-6">
-								<ul>
-									<li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
-										<span><c:out value="${data.email}"></c:out></span></li>
-									<li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
-										<span>Available</span></li>
-								</ul>
-							</div>
+							<p>
+								<c:out value="${data.about_me}"></c:out>
+							</p>
 						</div>
-						<p><c:out value="${data.about_me}"></c:out></p>
 					</div>
-				</div>
 
-			</div>
-		</section>
+				</div>
+			</section>
 		</c:forEach>
 		<!-- End About Section -->
 
 
-<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${user_id} ;	</sql:query>
+		<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${UserId} ;	</sql:query>
 
 
 		<!-- ======= Skills Section ======= -->
@@ -182,40 +190,52 @@
 					<!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
 				</div>
 
-				<%! int i=1, j=1; %>
+				<%!int i = 1, j = 1;%>
 				<div class="row skills-content">
-				<c:forEach var="data" items="${rs.rows}">
-					<% i+=1; %>
-				</c:forEach>
-	<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${user_id} ;	</sql:query>
-	<c:forEach var="data" items="${rs.rows}">
+					<c:forEach var="data" items="${rs.rows}">
+						<%
+						i += 1;
+						%>
+					</c:forEach>
+					<sql:query var="rs" dataSource="${db}">SELECT * from skills where user_id =${UserId} ;	</sql:query>
+					<c:forEach var="data" items="${rs.rows}">
 
-					<% if (j++ <= i/2) { %>
-         <div class="col-lg-6" data-aos="fade-up">
+						<%
+						if (j++ <= i / 2) {
+						%>
+						<div class="col-lg-6" data-aos="fade-up">
 
-						<div class="progress">
-							<span class="skill"><c:out value="${data.skill}"></c:out> <i class="val"><c:out value="${data.level}"></c:out>%</i></span>
-							<div class="progress-bar-wrap">
-								<div class="progress-bar" role="progressbar" aria-valuenow="<c:out value="${data.level}"></c:out>"
-									aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress">
+								<span class="skill"><c:out value="${data.skill}"></c:out>
+									<i class="val"><c:out value="${data.level}"></c:out>%</i></span>
+								<div class="progress-bar-wrap">
+									<div class="progress-bar" role="progressbar"
+										aria-valuenow="<c:out value="${data.level}"></c:out>"
+										aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
 							</div>
+
 						</div>
+						<%
+						} else {
+						%>
+						<div class="col-lg-6" data-aos="fade-up">
 
-					</div>
-      <% } else { %>
-         <div class="col-lg-6" data-aos="fade-up">
-
-						<div class="progress">
-							<span class="skill"><c:out value="${data.skill}"></c:out>  <i class="val"><c:out value="${data.level}"></c:out> %</i></span>
-							<div class="progress-bar-wrap">
-								<div class="progress-bar" role="progressbar" aria-valuenow="<c:out value="${data.level}"></c:out>"
-									aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress">
+								<span class="skill"><c:out value="${data.skill}"></c:out>
+									<i class="val"><c:out value="${data.level}"></c:out> %</i></span>
+								<div class="progress-bar-wrap">
+									<div class="progress-bar" role="progressbar"
+										aria-valuenow="<c:out value="${data.level}"></c:out>"
+										aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
 							</div>
-						</div>
 
-					</div>
-      <% } %>
-		</c:forEach>
+						</div>
+						<%
+						}
+						%>
+					</c:forEach>
 
 				</div>
 
@@ -231,47 +251,49 @@
 					<h2>Resume</h2>
 					<!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
 				</div>
-				
-				
+
+
 				<div class="row">
 					<div class="col-lg-6" data-aos="fade-up">
 						<h3 class="resume-title">Sumary</h3>
-				<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${user_id} ;</sql:query>
+						<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${UserId} ;</sql:query>
 
-	<c:forEach var="data" items="${rs.rows}">
-						<div class="resume-item pb-0">
-							<h4><c:out value="${data.name_}"></c:out></h4>
-							<p>
-								<em><c:out value="${data.about_me}"></c:out></em>
-							</p>
-							<ul>
-								<li><c:out value="${data.address}"></c:out></li>
-								<li><c:out value="${data.phone}"></c:out></li>
-								<li><c:out value="${data.email}"></c:out></li>
-							</ul>
-						</div>
+						<c:forEach var="data" items="${rs.rows}">
+							<div class="resume-item pb-0">
+								<h4>
+									<c:out value="${data.name_}"></c:out>
+								</h4>
+								<p>
+									<em><c:out value="${data.about_me}"></c:out></em>
+								</p>
+								<ul>
+									<li><c:out value="${data.address}"></c:out></li>
+									<li><c:out value="${data.phone}"></c:out></li>
+									<li><c:out value="${data.email}"></c:out></li>
+								</ul>
+							</div>
 
-</c:forEach>
+						</c:forEach>
 
-<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${user_id} ;</sql:query>
+						<sql:query var="rs" dataSource="${db}">SELECT a.*, c.* from about a join contact_info c on a.user_id = c.user_id where a.user_id =${UserId} ;</sql:query>
 
 						<h3 class="resume-title">Education</h3>
-	<c:forEach var="data" items="${rs.rows}">
-						<div class="resume-item">
-							<h4>Master of Fine Arts &amp; Graphic Design</h4>
-							<h5>2015 - 2016</h5>
-							<p>
-								<em>Rochester Institute of Technology, Rochester, NY</em>
-							</p>
-							<p>Qui deserunt veniam. Et sed aliquam labore tempore sed
-								quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos
-								deleniti nerada porti sand markend</p>
-						</div>
-	</c:forEach>
+						<c:forEach var="data" items="${rs.rows}">
+							<div class="resume-item">
+								<h4>Master of Fine Arts &amp; Graphic Design</h4>
+								<h5>2015 - 2016</h5>
+								<p>
+									<em>Rochester Institute of Technology, Rochester, NY</em>
+								</p>
+								<p>Qui deserunt veniam. Et sed aliquam labore tempore sed
+									quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos
+									deleniti nerada porti sand markend</p>
+							</div>
+						</c:forEach>
 					</div>
 					<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 						<h3 class="resume-title">Professional Experience</h3>
-						
+
 						<div class="resume-item">
 							<h4>Senior graphic design specialist</h4>
 							<h5>2019 - Present</h5>
@@ -305,50 +327,62 @@
 				</div>
 
 				<div class="row" data-aos="fade-in">
-<sql:query var="rs" dataSource="${db}">SELECT * FROM contact_info where user_id =${user_id} ;</sql:query>
+					<sql:query var="rs" dataSource="${db}">SELECT * FROM contact_info where user_id =${UserId} ;</sql:query>
 
-	<c:forEach var="data" items="${rs.rows}">
-					<div class="col-lg-5 d-flex align-items-stretch">
-						<div class="info">
-							<div class="address">
-								<i class="bi bi-geo-alt"></i>
-								<h4>Location:</h4>
-								<p><c:out value="${data.address}"></c:out></p>
-							</div>
-
-							<a href="mailto:admin@gmail.com">
-								<div class="email">
-									<i class="bi bi-envelope"></i>
-									<h4>Email:</h4>
-									<p><c:out value="${data.email}"></c:out></p>
+					<c:forEach var="data" items="${rs.rows}">
+						<div class="col-lg-5 d-flex align-items-stretch">
+							<div class="info">
+								<div class="address">
+									<i class="bi bi-geo-alt"></i>
+									<h4>Location:</h4>
+									<p>
+										<c:out value="${data.address}"></c:out>
+									</p>
 								</div>
-							</a>
 
-							<div class="phone">
-								<i class="bi bi-phone"></i>
-								<h4>Call:</h4>
-								<p><c:out value="${data.phone}"></c:out></p>
+								<a href="mailto:admin@gmail.com">
+									<div class="email">
+										<i class="bi bi-envelope"></i>
+										<h4>Email:</h4>
+										<p>
+											<c:out value="${data.email}"></c:out>
+										</p>
+									</div>
+								</a>
+
+								<div class="phone">
+									<i class="bi bi-phone"></i>
+									<h4>Call:</h4>
+									<p>
+										<c:out value="${data.phone}"></c:out>
+									</p>
+								</div>
 							</div>
-						</div>
-					
 
-					</div>
+
+						</div>
 					</c:forEach>
 
 					<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
 						<form action="../SendMessage" method="post">
-						<input type="hidden" name="user_id" value="<c:out value="${user_id}"></c:out>">
+							<input type="hidden" name="user_id"
+								value="<c:out value="${UserId}"></c:out>">
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="name">Your Name</label> <input type="text" name="name" placeholder="Enter name" class="form-control"  required>
+									<label for="name">Your Name</label> <input type="text"
+										name="name" placeholder="Enter name" class="form-control"
+										required>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="email">Your Email</label> <input type="email" name="email" placeholder="Enter email" class="form-control"  required>
+									<label for="email">Your Email</label> <input type="email"
+										name="email" placeholder="Enter email" class="form-control"
+										required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="message">Message</label>
-								<textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+								<textarea class="form-control" name="message" id="message"
+									rows="10" required></textarea>
 							</div>
 							<div class="text-center">
 								<button type="submit" name="submit">Send Message</button>
