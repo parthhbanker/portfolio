@@ -18,7 +18,7 @@
 		where user_id = ${user_id}
 	</sql:update>
 
-	<c:if test="${count eq \"0\" or count eq \"null\"}">
+	<c:if test="${count eq \"0\" or  \"null\"}">
 
 		<sql:update dataSource="${db}" var="count">  
 			INSERT INTO contact_info(address , phone, email, user_id) VALUES ("${param.address}", "${param.phone}", "${param.email}", ${user_id} );
@@ -48,22 +48,20 @@
 								<sql:query var="rs" dataSource="${db}">SELECT * from contact_info where user_id = ${user_id} ;	</sql:query>
 
 								<div class="form-group">
+									<label for="contact" class=" form-control-label">Email</label>
+									<input type="email" name="email" class="form-control" value="${rs.rows[0].email}"required disabled>
+								</div>
+								<div class="form-group">
+									<label for="contact" class=" form-control-label">Phone</label>
+									<input type="number" name="phone" class="form-control" value="${rs.rows[0].phone}"required disabled>
+								</div>
+								<div class="form-group">
 									<label for="contact" class=" form-control-label">Address</label>
 									<textarea name="address" class="form-control" required disabled><c:out
 											value="${rs.rows[0].address}" /></textarea>
 								</div>
 
-								<div class="form-group">
-									<label for="contact" class=" form-control-label">Phone</label>
-									<textarea name="phone" class="form-control" required disabled><c:out
-											value="${rs.rows[0].phone}" /></textarea>
-								</div>
 
-								<div class="form-group">
-									<label for="contact" class=" form-control-label">Email</label>
-									<textarea name="email" class="form-control" required disabled><c:out
-											value="${rs.rows[0].email}" /></textarea>
-								</div>
 
 								<button id="payment-button" name="submit" type="submit"
 									class="btn btn-lg btn-info btn-block" disabled>

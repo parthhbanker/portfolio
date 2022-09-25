@@ -21,7 +21,7 @@
 		where user_id = ${user_id}
 	</sql:update>
 	
-	<c:if test="${count eq \"0\" or count eq \"null\"}">
+	<c:if test="${count eq \"0\" or  \"null\"}">
 
 		<sql:update dataSource="${db}" var="count">  
 			INSERT INTO about(name_ , nationality, about_me, positions , projects , user_id) VALUES ("${param.name}", "${param.nationality}", "${param.about_me}", "${param.positions}" , ${param.projects} ,${user_id} );
@@ -63,17 +63,12 @@
 										value="${rs.rows[0].nationality}" required disabled>
 								</div>
 
-								<div class="form-group">
-									<label for="about" class=" form-control-label">About Me</label>
-									<textarea name="about_me" class="form-control" required
-										disabled>${rs.rows[0].about_me}</textarea>
-								</div>
 
 								<div class="form-group">
 									<label for="about" class=" form-control-label">My
 										Positions</label>
-									<textarea name="positions" class="form-control" required
-										disabled>${rs.rows[0].positions}</textarea>
+									<input type="text" value="${rs.rows[0].positions}" name="positions" class="form-control" required
+										disabled>
 								</div>
 
 								<div class="form-group">
@@ -82,6 +77,11 @@
 										value="${rs.rows[0].projects}" class="form-control" required
 										disabled min="0" value="0">
 
+								</div>
+								<div class="form-group">
+									<label for="about" class=" form-control-label">About Me</label>
+									<textarea name="about_me" class="form-control" required
+										disabled>${rs.rows[0].about_me}</textarea>
 								</div>
 
 								<button id="payment-button" name="submit" type="submit"

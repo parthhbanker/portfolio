@@ -101,20 +101,21 @@ input:checked+.slider:before {
 						href="contact_info.jsp"> Contact Information</a></li>
 					<li class="menu-item-has-children dropdown"><a
 						href="users.jsp"> Edit Profile</a></li>
+					<li class="menu-item-has-children dropdown"><a
+						href="education.jsp"> Education</a></li>
 
 					<li class="menu-item-has-children dropdown"><a
 						href="contact_us.jsp"> Messages</a></li>
 
 					<li class="menu-item-has-children dropdown"><a
+						href="categories.jsp"> Categories</a></li>
+					<li class="menu-item-has-children dropdown"><a
 						href="skills.jsp"> Skills</a></li>
 
-					<li class="menu-item-has-children dropdown"><a
-						href="categories.jsp"> Categories</a></li>
 
-					<li class="menu-item-has-children dropdown">
-                  
-                     <a href="../Portfolio_2/index.jsp?userId=<c:out value='${user_id}'></c:out>" target="_blank"> Create Portfolio</a>
-                  </li>
+					<li class="menu-item-has-children dropdown"><a
+						href="../Portfolio_2/index.jsp?userId=<c:out value='${user_id}'></c:out>"
+						target="_blank"> Create Portfolio</a></li>
 
 					<li><a href="../logout"> <i
 							class="menu-icon fa fa-sign-out"></i>Logout

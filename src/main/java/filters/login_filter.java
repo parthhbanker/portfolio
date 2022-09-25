@@ -18,33 +18,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Servlet Filter implementation class login_filter
- */
+ 
 public class login_filter extends HttpFilter implements Filter {
        
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public login_filter() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
-
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		
 		System.out.println("calling filter");
 		HttpServletRequest req = (HttpServletRequest) request;
 		ServletContext sc = req.getSession().getServletContext();
@@ -96,12 +75,9 @@ public class login_filter extends HttpFilter implements Filter {
 		}
 		
 	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
+ 
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+	 
 	}
 
 }

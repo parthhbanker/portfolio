@@ -12,24 +12,14 @@ import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Servlet implementation class SendMessage
- */
+ 
 public class SendMessage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SendMessage() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+  
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/portfolio", "root", "root");
+			Connection c=data.connect();
 
 			PreparedStatement s;
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
