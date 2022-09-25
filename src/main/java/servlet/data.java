@@ -262,6 +262,8 @@ public class data {
 
 	public static boolean validate(String email, String password) {
 
+		System.out.println("Email : " + email + " Password : " + password);
+		
 		user p = data.get_person(email, password);
 
 		if (p == null || p.email == null) {
@@ -306,4 +308,23 @@ public class data {
 		}
 
 	}
+
+	public static boolean check_availability(String email, String password) {
+
+		user p = data.get_person(email, password);
+		
+		if ( p == null || p.email == null) {
+
+			System.out.println("available");
+			return true;
+
+		} else {
+
+			System.out.println("not available");
+			return false;
+
+		}
+
+	}
+
 }
