@@ -57,15 +57,16 @@ CREATE TABLE IF NOT EXISTS contact_info (
 CREATE TABLE IF NOT EXISTS education (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     school TEXT,
+    college TEXT,
     degree TEXT,
     start_date TEXT,
     end_date TEXT,
     user_id INT,
+    study bool,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );	
- 
-insert into education(school,college,degree,start_date,end_date,user_id,study) values("mehta","gu","bsc","2022-09-04","2022-12-02",1,1);
--- select * from education;		
+-- insert into education(school,college,degree,start_date,end_date,user_id,study) values("mehta","gu","bsc","2022-09-04","2022-12-02",1,1);
+select * from education;		
 
 CREATE TABLE IF NOT EXISTS categories(
 	id INT PRIMARY KEY AUTO_INCREMENT, 
