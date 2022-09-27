@@ -32,14 +32,12 @@ else
 		<sql:update dataSource="${db}" var="count">  
 			INSERT INTO education(school ,college,degree, start_date,end_date,study, user_id) VALUES
 			 ("<%=request.getParameter("school")%>","<%=request.getParameter("college")%>", "<%=request.getParameter("degree")%>",
-			 "<%=request.getParameter("start_date")%>","<%=request.getParameter("end_date")%>", study="<%=study%>", ${user_id} );
+			 "<%=request.getParameter("start_date")%>","<%=request.getParameter("end_date")%>","<%=study%>", ${user_id} );
 		</sql:update>
 
 	</c:if>
-	
-	<c:set var="thiss" value="${rs.rows[0].study}"/>
-	<c:if test="${thiss==1}" var="storing">
-	</c:if>
+
+
 </c:if>
 
 <div class="content pb-0">
@@ -64,7 +62,7 @@ else
 								<div class="form-group">
 									<label for="education" class=" form-control-label">school</label>
 									<input type="text" value="${rs.rows[0].school}" name="school"
-										class="form-control"id="sch" required disabled>
+										class="form-control" id="sch" required disabled>
 
 								</div>
 
@@ -94,12 +92,23 @@ else
 									<input type="date" class="form-control" name="end_date"
 										value="${rs.rows[0].end_date}" required disabled>
 								</div>
-							
-								<div class="form-group ml-4">
-						
-									<input type="checkbox" class="form-check-input" name="check" checked="${storing}"
-									 disabled > currently studying
-								</div>
+
+								<c:choose>
+									<c:when test="${rs.rows[0].study==true}">
+										<div class="form-group ml-4">
+
+											<input type="checkbox" class="form-check-input" name="check"
+												checked disabled> currently studying
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="form-group ml-4">
+
+											<input type="checkbox" class="form-check-input" name="check"
+												disabled> currently studying
+										</div>
+									</c:otherwise>
+								</c:choose>
 
 								<button id="payment-button" name="submit" type="submit"
 									class="btn btn-lg btn-info btn-block" disabled>
@@ -115,6 +124,7 @@ else
 	</div>
 </div>
 <script>
+	
 </script>
 <!-- FOOTER -->
 <jsp:include page="footer.jsp" />

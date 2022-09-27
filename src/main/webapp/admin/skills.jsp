@@ -12,7 +12,7 @@
 <c:if test="${not empty param.id}">
 
 	<sql:update dataSource="${db}" var="count">  
-		DELETE FROM skills wher id = "${param.id}" ; 
+		DELETE FROM skills where id = "${param.id}" ; 
 	</sql:update>
 	
 	<%
