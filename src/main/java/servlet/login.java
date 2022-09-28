@@ -46,7 +46,6 @@ public class login extends HttpServlet {
 
 		ServletContext sc = getServletContext();
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 
 		Cookie cookie;
 
@@ -125,6 +124,7 @@ public class login extends HttpServlet {
 			} else {
 
 				// redirect back with warning
+				
 				response.sendRedirect("admin/login.jsp?warning=2");
 
 			}
