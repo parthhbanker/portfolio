@@ -41,7 +41,7 @@
 							</label>
 						</span>
 					</div>
-					<form method="post" action="contact_info.jsp" id="editForm">
+					<!-- <form method="post" action="contact_info.jsp" id="editForm">
 						<div class="card-body card-block">
 							<div class="form-group">
 
@@ -66,7 +66,7 @@
 								<button id="payment-button" name="submit" type="submit"
 									class="btn btn-lg btn-info btn-block" disabled>
 									<span id="payment-button-amount">Submit</span>
-								</button>
+								</button> -->
 
 							</div>
 						</div>
