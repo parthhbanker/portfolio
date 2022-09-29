@@ -21,12 +21,12 @@
 
 		if (getServletContext().getAttribute("warning").toString().equals("1")) {
 			
-			%> <h2 style="color: red;">warning : user already exists</h2> <%
+			%> <h2 id="h" style="color: red;">warning : user already exists</h2> <%
 			getServletContext().setAttribute("warning", 0);
 
 		} else if (getServletContext().getAttribute("warning").toString().equals("2")) {
 			
-			%> <h2 style="color: red;">warning : wrong email id or password</h2> <%
+			%> <h2 id="h" style="color: red;">warning : wrong email id or password</h2> <%
 			getServletContext().setAttribute("warning", 0);
 
 		}
@@ -146,7 +146,7 @@
 			<form action="login.jsp" method="post">
 				<input type="hidden" name="form" value="sign_up">
 				<h1>Create Account</h1>
-				<input type="text" placeholder="User Name" name="name" required />
+				<input type="text" placeholder="User Name"  name="name" required />
 				<input type="email" placeholder="Email" name="email" required /> <input
 					type="password" placeholder="Password" name="password" required />
 				<button>Sign Up</button>
@@ -159,8 +159,8 @@
 			<form action="login.jsp" method="post">
 				<input type="hidden" name="form" value="signin">
 				<h1>Sign in</h1>
-				<input type="email" placeholder="Email" name="email" required /> <input
-					type="password" placeholder="Password" name="password" required />
+				<input type="email" placeholder="Email" name="email"  onclick="warning()" required /> <input
+					type="password" placeholder="Password" name="password" onclick="warning()" required />
 				<a href="forgot_password.jsp">Forgot your password?</a>
 				<button>Sign In</button>
 			</form>
@@ -192,10 +192,20 @@ const container = document.getElementById('container');
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
+	hidden();
 });
 
 signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
+	hidden();
 });
+
+function hidden(){
+	document.getElementById("h").style.visibility = "hidden";
+}
+
+function warning(){
+	hidden();
+}
 </script>
 </html>
