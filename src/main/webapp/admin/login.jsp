@@ -83,7 +83,7 @@
 
 					// redirect to user admin panel
 					System.out.println("Redirecting to security page");
-					response.sendRedirect("admin/security_question.jsp");
+					response.sendRedirect("security_question.jsp");
 
 				} else {
 
@@ -122,7 +122,7 @@
 					System.out.println("username is ");
 
 //					request.getRequestDispatcher("dashboard.jsp").include(request, response);
-					response.sendRedirect("admin/index.jsp");
+					response.sendRedirect("index.jsp");
 
 				} else {
 
