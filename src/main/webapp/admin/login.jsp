@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="stylesheet" href="assets/css/login.css" type="text/css">
+<link rel="stylesheet" href="admin/assets/css/login.css" type="text/css">
 <title>Login</title>
 
 
@@ -88,7 +88,7 @@
 				} else {
 
 					getServletContext().setAttribute("warning", "1");
-					response.sendRedirect("login.jsp");
+					response.sendRedirect("admin/login.jsp");
 
 				}
 				%>
@@ -127,7 +127,7 @@
 				} else {
 
 					getServletContext().setAttribute("warning", "2");
-					response.sendRedirect("login.jsp");
+					response.sendRedirect("admin/login.jsp");
 
 				}
 				
@@ -143,7 +143,7 @@
 
 		<!-- SIgn up -->
 		<div class="form-container sign-up-container">
-			<form action="login.jsp" method="post">
+			<form action="admin/login.jsp" method="post">
 				<input type="hidden" name="form" value="sign_up">
 				<h1>Create Account</h1>
 				<input type="text" placeholder="User Name"  name="name" required />
@@ -156,7 +156,7 @@
 
 		<!-- Sign in -->
 		<div class="form-container sign-in-container">
-			<form action="login.jsp" method="post">
+			<form action="admin/login.jsp" method="post">
 				<input type="hidden" name="form" value="signin">
 				<h1>Sign in</h1>
 				<input type="email" placeholder="Email" name="email"  onclick="warning()" required /> <input
